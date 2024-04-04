@@ -1,4 +1,5 @@
 import 'package:sqflite/sqflite.dart';
+import 'dart:convert';
 
 const String tableBoardGame = "board_games";
 
@@ -13,9 +14,9 @@ class BoardGame {
     return {
       'id': id,
       'name': name,
-      'isExpansion': isExpansion,
-      'parent': parent,
-      'components': components
+      'is_expansion': isExpansion,
+      'parent_id': parent,
+      'components': jsonEncode(components)
     };
   }
 
@@ -29,9 +30,9 @@ class BoardGame {
   BoardGame.fromMap(Map<String, dynamic> map)
       : id = map['id'],
         name = map['name'],
-        isExpansion = map['isExpansion'],
-        parent = map['parent'],
-        components = map['components'];
+        isExpansion = map['is_expansion'],
+        parent = map['parent_id'],
+        components = jsonDecode(map['components']);
 }
 
 class BoardGameProvider {

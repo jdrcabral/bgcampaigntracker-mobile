@@ -1,0 +1,859 @@
+{
+    "characters": [
+        "Jill Valentine",
+        "Chris Redfield",
+        "Rebecca Chambers",
+        "Barry Burton",
+        "Brad Vickers",
+        "Enrico Marini",
+        "Albert Wesker",
+        "Richard Aiken",
+        "Edward Dewey",
+        "Joseph Frost",
+        "Kenneth J. Sullivan",
+        "Forest Speyer",
+        "Albert Wesker (Reserve Only)",
+        "Brad Vickers (Reserve Only)",
+        "Enrico Marini (Reserve Only)",
+        "Richard Aiken (Reserve Only)"
+    ],
+    "items": [
+        "003 Key",
+        "Acid Rounds",
+        "Aqua Ring Key",
+        "Armour Key",
+        "Assault Shotgun",
+        "Battery",
+        "Blue Gemstone",
+        "Blue Herb",
+        "Broken Shotgun",
+        "Charged Battery",
+        "Crank",
+        "Dagger",
+        "Death Mask",
+        "Dog Whistle",
+        "Eagle Medallion",
+        "Emblem Key",
+        "First Aid Spray",
+        "Flame Thrower",
+        "Fuel Capsule",
+        "Golden Emblem",
+        "Green Herb",
+        "Grenade",
+        "Grenade Launcher",
+        "Grenade Rounds",
+        "Handgun Bullets",
+        "Handgun",
+        "Helmet Key",
+        "Herbicide",
+        "Imitation Key",
+        "Incendiary Rounds",
+        "Insect Spray",
+        "Kerosene Container",
+        "Knife",
+        "Knife (Knife only)",
+        "Lighter",
+        "Magnum",
+        "Magnum Bullets",
+        "Master of Knifing",
+        "Metal Object",
+        "MO Disk",
+        "Moon File",
+        "Moon Tome",
+        "Music Notes",
+        "Old Key",
+        "Power Key",
+        "Red Herb",
+        "Rocket Launcher",
+        "Self Defense Gun",
+        "Shield Key",
+        "Shotgun",
+        "Shotgun Shells",
+        "Solution",
+        "Star File",
+        "Star Tome",
+        "Stone Ring",
+        "Stone & Metal Object",
+        "Stun Gun",
+        "Sun File",
+        "Sun Tome",
+        "Sword Key",
+        "Unprinted Book",
+        "V-Jolt",
+        "Wind Crest",
+        "Wolf Medallion",
+        "Wooden Emblem",
+        "Yellow Gemstone"
+    ],
+    "mission": [
+        "Above And Beyond",
+        "Blue Gem Into The Tiger Statue",
+        "Burning Bodies",
+        "Decoy",
+        "Defeat The Fountain Plant",
+        "Emergency",
+        "Finding Someplace Safe",
+        "Forced Retreat",
+        "Get The Serum!",
+        "Gunshot",
+        "Mission Of Mercy",
+        "Problem Solving",
+        "Proving Their Innocence",
+        "Radio Call",
+        "Rescue",
+        "Rooting Out The Traitor",
+        "Scouting Ahead",
+        "Screams",
+        "Searching For MO Disks",
+        "Searching For Survivors",
+        "Securing An Escape Route",
+        "Securing An Escape Route",
+        "Supply Run",
+        "Take Point",
+        "Teamwork",
+        "The Graveyard Puzzle",
+        "Travel To Item Box",
+        "Under Attack!",
+        "Yellow Gem Into The Tiger Statue",
+        "…You're Alive?!"
+    ],
+    "narrative": [
+        "Architect's Notebook",
+        "Animosity",
+        "Assassination",
+        "Bleeding Out",
+        "Blood! Hope This Is Not…",
+        "Captured",
+        "Clearing Your Name",
+        "Commotion",
+        "Crimson Tide",
+        "Crow's Nest",
+        "Damning Evidence",
+        "Dangerous Puzzle",
+        "Dangerous To Go Alone",
+        "Deadly Pursuit",
+        "Escaped Prototype",
+        "Extermination",
+        "Festering Wound",
+        "Handwritten Note",
+        "Harrowing End",
+        "How Convenient",
+        "Hunted",
+        "I Don't Know What Happened…",
+        "Impervious Hide",
+        "Isolated Area",
+        "It's Stuck",
+        "Jammed Cartridge",
+        "Kerosene Container",
+        "Lights Out",
+        "Medical Supply Room",
+        "Mellow And Yellow",
+        "Message In Blood",
+        "Narrow Escape",
+        "Ominous Shadows",
+        "Overcome",
+        "Overcoming The Odds",
+        "Poisoned Teammate",
+        "Radio Warning",
+        "Researcher's Diary",
+        "Save Room",
+        "Second Chance",
+        "Secret Passage Way",
+        "Seeds Of Mistrust",
+        "She's Here!",
+        "Soldier's Note",
+        "Something Valuable",
+        "Spider Lair",
+        "Test Of Character",
+        "Tiger Puzzle",
+        "Too Late",
+        "Traitor Among Us",
+        "Traitor In The Ranks",
+        "Trapped",
+        "Unending Nightmare",
+        "Wounded Teammate"
+    ],
+    "tensionCards": [
+        {
+            "name": "All Clear",
+            "value": "Green"
+        },
+        {
+            "name": "Cleared Out",
+            "value": "Green"
+        },
+        {
+            "name": "Gunshots In The Distance",
+            "value": "Green"
+        },
+        {
+            "name": "Respite",
+            "value": "Green"
+        },
+        {
+            "name": "Supply Cache",
+            "value": "Green"
+        },
+        {
+            "name": "Bee Swarm",
+            "value": "Amber"
+        },
+        {
+            "name": "Cornered",
+            "value": "Amber"
+        },
+        {
+            "name": "Diseased Claws",
+            "value": "Amber"
+        },
+        {
+            "name": "Fevered Assault",
+            "value": "Amber"
+        },
+        {
+            "name": "Flickering Lights",
+            "value": "Amber"
+        },
+        {
+            "name": "Foreboding Scene",
+            "value": "Amber"
+        },
+        {
+            "name": "Frayed Nerves",
+            "value": "Amber"
+        },
+        {
+            "name": "From The Depths",
+            "value": "Amber"
+        },
+        {
+            "name": "Gnawing Fear",
+            "value": "Amber"
+        },
+        {
+            "name": "Keep Quiet!",
+            "value": "Amber"
+        },
+        {
+            "name": "Mission Update",
+            "value": "Amber"
+        },
+        {
+            "name": "No Escape",
+            "value": "Amber"
+        },
+        {
+            "name": "Ominous Feeling",
+            "value": "Amber"
+        },
+        {
+            "name": "Reanimate",
+            "value": "Amber"
+        },
+        {
+            "name": "Sabotage",
+            "value": "Amber"
+        },
+        {
+            "name": "Sinister Echoes",
+            "value": "Amber"
+        },
+        {
+            "name": "Sinister Hiss",
+            "value": "Amber"
+        },
+        {
+            "name": "Tragic Echoes",
+            "value": "Amber"
+        },
+        {
+            "name": "Treacherous Footing",
+            "value": "Amber"
+        },
+        {
+            "name": "Unfolding Events",
+            "value": "Amber"
+        },
+        {
+            "name": "Virulent Blood",
+            "value": "Amber"
+        },
+        {
+            "name": "Waterlogged",
+            "value": "Amber"
+        },
+        { 
+            "name": "Claws From The Ceiling",
+            "value": "Red"
+        },
+        { 
+            "name": "Countdown To Explosion",
+            "value": "Red"
+        },
+        { 
+            "name": "Crimson Rage",
+            "value": "Red"
+        },
+        { 
+            "name": "Deathly Rasp",
+            "value": "Red"
+        },
+        { 
+            "name": "Dragged Shackles",
+            "value": "Red"
+        },
+        { 
+            "name": "Hunter's Prey",
+            "value": "Red"
+        },
+        { 
+            "name": "Infestation",
+            "value": "Red"
+        },
+        { 
+            "name": "Keeper's Diary",
+            "value": "Red"
+        },
+        { 
+            "name": "Murder of Crows",
+            "value": "Red"
+        },
+        { 
+            "name": "Out of the Shadows",
+            "value": "Red"
+        },
+        { 
+            "name": "Overrun",
+            "value": "Red"
+        },
+        { 
+            "name": "Shattering Glass",
+            "value": "Red"
+        },
+        { 
+            "name": "Smashed Asunder",
+            "value": "Red"
+        },
+        { 
+            "name": "Three Minutes Until Explosion",
+            "value": "Red"
+        },
+        { 
+            "name": "Vigour Mortis",
+            "value": "Red"
+        },
+        { 
+            "name": "Waterway Open",
+            "value": "Red"
+        }
+    ],
+    "scenarios": [
+        {
+            "name": "1st Floor West A",
+            "discovered": true,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["1st Floor West B"]
+        },
+        {
+            "name": "2nd Floor West A",
+            "discovered": true,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["2nd Floor West B"]
+        },
+        {
+            "name": "1st Floor East A",
+            "discovered": true,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["1st Floor East B"]
+        },
+        {
+            "name": "2nd Floor East A",
+            "discovered": true,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["2nd Floor East B"]
+        },
+        {
+            "name": "1st Floor West B",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Sheet Music"],
+            "unlocks": ["Basement", "1st Floor West C"]
+        },
+        {
+            "name": "2nd Floor West B",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Dog Whistle"],
+            "unlocks": ["3rd Floor A"]
+        },
+        {
+            "name": "1st Floor East B",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Amour Key"],
+            "unlocks": ["1st Floor East C", "Garden A"]
+        },
+        {
+            "name": "2nd Floor East B",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Shield Key"],
+            "unlocks": ["2nd Floor East C"]
+        },
+        {
+            "name": "1st Floor West C",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Helmet Key"],
+            "unlocks": ["Garden C"]
+        },
+        {
+            "name": "1st Floor East C",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Helmet Key"],
+            "unlocks": []
+        },
+        {
+            "name": "2nd Floor East C",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": []
+        },
+        {
+            "name": "3rd Floor A",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Helmet Key"],
+            "unlocks": ["3rd Floor B"]
+        },
+        {
+            "name": "3rd Floor B",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": []
+        },
+        {
+            "name": "Basement",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Helmet Key"],
+            "unlocks": []
+        },
+        {
+            "name": "Crypts A",
+            "discovered": true,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Death Mask x3(Core) OR Death Mask x4(Into The Darkness)"],
+            "unlocks": []
+        },
+        {
+            "name": "Crypts B",
+            "discovered": true,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Stone & Metal Object x2"],
+            "unlocks": ["Lab A"]
+        },
+        {
+            "name": "Garden A",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["Garden B"]
+        },
+        {
+            "name": "Garden B",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Crank"],
+            "unlocks": ["Guard House A"]
+        },
+        {
+            "name": "Garden C",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Charged Battery"],
+            "unlocks": ["Caves A"]
+        },
+        {
+            "name": "Caves A",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["Caves B"]
+        },
+        {
+            "name": "Caves B",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["Caves C"]
+        },
+        {
+            "name": "Caves C",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": []
+        },
+        {
+            "name": "Guard House A",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["Aqua Ring A"]
+        },
+        {
+            "name": "Guard House B",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["Guard House C"]
+        },
+        {
+            "name": "Guard House C",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": []
+        },
+        {
+            "name": "Aqua Ring A",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["Aqua Ring B"]
+        },
+        {
+            "name": "Aqua Ring B",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["Guard House B"]
+        },
+        {
+            "name": "Lab A",
+            "discovered": false,
+            "completed": false,
+            "locked": true,
+            "lockedBy": ["Wolf Medal & Eagle Medal"],
+            "unlocks": ["Helipad", "Lab B"]
+        },
+        {
+            "name": "Lab B",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": ["Lab C"]
+        },
+        {
+            "name": "Lab C",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": []
+        },
+        {
+            "name": "Helipad",
+            "discovered": false,
+            "completed": false,
+            "locked": false,
+            "unlocks": []
+        }
+    ],
+    "expansions": [
+        {
+            "name": "Bleak Outpost",
+            "narrative": [
+                "Bleeding Out",
+                "Extermination",
+                "Festering Wound",
+                "Harrowing End",
+                "Impervious Hide",
+                "Mellow And Yellow",
+                "Narrow Escape",
+                "Overcome",
+                "Researcher's Diary",
+                "Save Room",
+                "Seeds Of Mistrust",
+                "Soldier's Note",
+                "Something Valuable",
+                "Tiger Puzzle",
+                "Traitor Among Us",
+                "Trapped"
+            ],
+            "mission": [
+                "Blue Gem Into The Tiger Statue",
+                "Problem Solving",
+                "Securing An Escape Route",
+                "Teamwork",
+                "Yellow Gem Into The Tiger Statue"
+            ],
+            "tensionCards": [
+                "Respite",
+                "Supply Cache",
+                "Bee Swarm",
+                "Diseased Claws",
+                "Flickering Lights",
+                "From The Depths",
+                "Sinister Echoes",
+                "Sinister Hiss",
+                "Treacherous Footing",
+                "Virulent Blood",
+                "Waterlogged",
+                "Infestation",
+                "Overrun",
+                "Waterway Open"
+            ],
+            "scenarios": [
+                "Aqua Ring A",
+                "Aqua Ring B",
+                "Garden B",
+                "Guard House A",
+                "Guard House B",
+                "Guard House C"
+            ]
+        },
+        {
+            "name": "Into The Darkness",
+            "tensionCards": [
+                "Cleared Out",
+                "Hunter's Prey"
+            ],
+            "scenarios": [
+                "2nd Floor East C",
+                "3rd Floor A",
+                "3rd Floor B",
+                "Caves A",
+                "Caves B",
+                "Caves C",
+                "Garden C"
+            ]
+        },
+        {
+            "name": "Director's Cut",
+            "narrative": [
+                "Animosity",
+                "Assassination",
+                "Clearing Your Name",
+                "Crow's Nest",
+                "Damning Evidence",
+                "Dangerous To Go Alone",
+                "Deadly Pursuit",
+                "How Convenient",
+                "Isolated Area",
+                "Overcoming The Odds",
+                "Spider Lair",
+                "Traitor In The Ranks",
+                "Unending Nightmare"
+            ],
+            "tensionCards": ["Sabotage"],
+            "mission": [
+                "Above And Beyond",
+                "Proving Their Innocence",
+                "Rooting Out The Traitor",
+                "Travel To Item Box"
+            ],
+            "characters": [
+                "Albert Wesker",
+                "Brad Vickers",
+                "Edward Dewey",
+                "Enrico Marini",
+                "Forest Speyer",
+                "Joseph Frost",
+                "Kenneth J. Sullivan",
+                "Richard Aiken"
+            ]
+        }
+    ],
+    "encounters": [
+        {
+            "name":"Spawn a Corpse...",
+            "symbol": "",
+            "effect": ["Clue", "Clue"]
+        },
+        {
+            "name": "Spawn a Zombie... (long text)",
+            "symbol": "",
+            "effect": ["Wound"]
+        },
+        {
+            "name": "Spawn two Zombies...",
+            "symbol": "",
+            "effect": ["Wound"]
+        },
+        {
+            "name": "Spawn a Zombie...",
+            "symbol": "",
+            "effect": ["Wound"]
+        },
+        {
+            "name":"Spawn a Corpse...",
+            "symbol": "",
+            "effect": ["Clue", "Wound"]
+        },
+        {
+            "name":"After resolving all...",
+            "symbol": "",
+            "effect": ["Clue"]
+        },
+        {
+            "name":"Locate the closest...",
+            "symbol": "",
+            "effect": ["Clue"]
+        },
+        {
+            "name": "Place a yellow...",
+            "symbol": "",
+            "effect": ["S.T.A.R.S", "Heal"]
+        },
+        {
+            "name": "Discard this card...",
+            "symbol": "",
+            "effect": ["S.T.A.R.S", "Item"]
+        },
+        {
+            "name": "Spawn a Corpse and Place a yellow...",
+            "symbol": "",
+            "effect": ["Clue"]
+        },
+        {
+            "name": "Spawn a Cerberus...",
+            "symbol": "",
+            "effect": ["Wound"]
+        },
+        {
+            "name": "Spawn a Zombie and Draw a tension...",
+            "symbol": "",
+            "effect": ["Clue"]
+        },
+        {
+            "name": "Spawn a Zombie and Search the encounter...",
+            "symbol": "",
+            "effect": ["Clue"]
+        },
+        {
+            "name": "Spawn two and Search the encounter...",
+            "symbol": "",
+            "effect": ["Clue"]
+        },
+        {
+            "name": "Spawn a Crimson...",
+            "symbol": "Circle 1",
+            "effect": ["Wound"]
+        },
+        {
+            "name":"After resolving all...",
+            "symbol": "Circle 2",
+            "effect": ["Clue", "Wound"]
+        },
+        {
+            "name": "After resolving all...",
+            "symbol": "Circle 3",
+            "effect": ["New Order"]
+        },
+        {
+            "name": "Spawn a Cerberus...",
+            "symbol": "Circle 4",
+            "effect": ["Wound"]
+        },
+        {
+            "name":"Spawn Lisa Trevor...",
+            "symbol": "Circle 5",
+            "effect": ["Clue", "Wound"]
+        },
+        {
+            "name": "Spawn a Hunter...",
+            "symbol": "Circle 6",
+            "effect": ["Wound", "Wound"]
+        },
+        {
+            "name": "Place this card...",
+            "symbol": "Circle 7",
+            "effect": ["New Order"]
+        },
+        {
+            "name":"After resolving all...",
+            "symbol": "Circle 8",
+            "effect": ["Clue", "Wound"]
+        },
+        {
+            "name": "Spawn a Zombie and After resolving all...",
+            "symbol": "Circle 9",
+            "effect": ["Clue"]
+        },
+        {
+            "name": "Spawn a Zombie...",
+            "symbol": "Circle 10",
+            "effect": ["Wound"]
+        },
+        {
+            "name":"Place the active...",
+            "symbol": "Circle 11",
+            "effect": ["Clue"]
+        },
+        {
+            "name": "Ignore the effects...",
+            "symbol": "Circle 12",
+            "effect": ["New Order", "Heal"]
+        },
+        {
+            "name": "Spawn Zombie Forest...",
+            "symbol": "Circle 13",
+            "effect": ["New Orders"]
+        },
+        {
+            "name": "Spawn Snakes...",
+            "symbol": "Circle 14",
+            "effect": ["Wound"]
+        },
+        {
+            "name": "Spawn two Snakes...",
+            "symbol": "Circle 15",
+            "effect": ["Wound"]
+        },
+        {
+            "name": "Spawn Crows...",
+            "symbol": "Circle 16",
+            "effect": ["Clue"]
+        },
+        {
+            "name": "Spawn a Webspinner...",
+            "symbol": "Circle 17",
+            "effect": ["Clue", "Wound"]
+        },
+        {
+            "name": "Spawn a Chimera...",
+            "symbol": "Circle 18",
+            "effect": ["Clue", "Wound"]
+        },
+        {
+            "name": "Spawn Enemy Wesker...",
+            "symbol": "Circle 19",
+            "effect": ["Wound"]
+        },
+        {
+            "name": "Spawn a Zombie...",
+            "symbol": "Circular Arrows",
+            "effect": ["Wound"]
+        }
+    ]
+}

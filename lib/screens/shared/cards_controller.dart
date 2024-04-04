@@ -1,47 +1,36 @@
 import 'package:campaigntrackerflutter/components/card_navigator.dart';
+import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CardsController extends StatefulWidget {
   final String title;
-  const CardsController({Key? key, required this.title}) : super(key: key);
+  final String stateKey;
+  final List<dynamic> options;
+  final List<dynamic> items;
+  const CardsController(
+      {Key? key,
+      required this.title,
+      required this.stateKey,
+      required this.options,
+      required this.items})
+      : super(key: key);
 
   @override
   _CardsControllerState createState() => _CardsControllerState();
 }
 
-const List<String> list = <String>[
-  'One',
-  'Two',
-  'Three',
-  'Four',
-  'Five',
-  'Six',
-  'Seven',
-  'Eight',
-  'Nine',
-  'Ten',
-  'Eleven',
-  'Twelve',
-  'Thirten',
-  'Fourten',
-  'Fiveten',
-  'Sixten',
-  'Seventen',
-  'Eighten',
-];
-
-const List<String> items = [
-  "003 Key",
-  "Acid Rounds",
-  "Aqua Ring Key",
-  "Armour Key",
-  "Assault Shotgun",
-  "Battery",
-];
-
 class _CardsControllerState extends State<CardsController>
     with SingleTickerProviderStateMixin {
+  String selectedItem = "";
+  List<String> _castListToString(List<dynamic> list) {
+    return [
+      for (var element in list)
+        if (element is String) element
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +42,7 @@ class _CardsControllerState extends State<CardsController>
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: ListView.builder(
-          itemCount: items.length,
+          itemCount: widget.items.length,
           itemBuilder: (context, index) => Card(
             surfaceTintColor: Colors.grey[350],
             shadowColor: Colors.black,
@@ -67,7 +56,7 @@ class _CardsControllerState extends State<CardsController>
                       padding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, top: 10.0),
                       child: Text(
-                        items[index],
+                        widget.items[index],
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -92,7 +81,6 @@ class _CardsControllerState extends State<CardsController>
                     decoration: InputDecoration(
                       labelText: 'Notes',
                     ),
-                    enableIMEPersonalizedLearning: ,
                   ),
                 ),
               ]),
@@ -103,6 +91,7 @@ class _CardsControllerState extends State<CardsController>
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
+          selectedItem = "";
           _dialogBuilder(context, widget.title);
         },
       ),
@@ -119,17 +108,18 @@ class _CardsControllerState extends State<CardsController>
             popupProps: const PopupProps.menu(
               showSearchBox: true,
               showSelectedItems: true,
-              //disabledItemFn: (String s) => s.startsWith('I'),
             ),
-            items: list,
+            items: _castListToString(widget.options),
             dropdownDecoratorProps: const DropDownDecoratorProps(
               dropdownSearchDecoration: InputDecoration(
                 labelText: "Card Selector",
                 hintText: "select card",
               ),
             ),
-            onChanged: print,
-            selectedItem: "",
+            onChanged: (value) {
+              selectedItem = value ?? "";
+            },
+            selectedItem: selectedItem,
           ),
           actions: <Widget>[
             TextButton(
@@ -138,6 +128,8 @@ class _CardsControllerState extends State<CardsController>
               ),
               child: const Text('Add'),
               onPressed: () {
+                Provider.of<CampaignStatus>(context, listen: false)
+                    .updateSavedState(widget.stateKey, selectedItem);
                 Navigator.of(context).pop();
               },
             ),

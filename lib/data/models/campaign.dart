@@ -1,12 +1,14 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:campaigntrackerflutter/data/models/board_game.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'dart:convert';
 
 const String tableCampaign = "campaigns";
 
 class Campaign {
   int id;
   String name;
-  BoardGame boardGame;
+  int boardGame;
   Map<String, dynamic> savedState;
   DateTime createdAt;
   DateTime updatedAt;
@@ -23,29 +25,24 @@ class Campaign {
     return {
       'id': id,
       'name': name,
-      'boardGame': boardGame.toMap(),
-      'savedState': savedState,
+      'board_game_id': boardGame,
+      'savedState': jsonEncode(savedState),
       'createdAt': createdAt.millisecondsSinceEpoch,
       'updatedAt': updatedAt.millisecondsSinceEpoch,
     };
   }
 
-  Campaign.fromMap(Map<String, dynamic> map)
-      : id = map['id'],
-        name = map['name'],
-        boardGame = BoardGame.fromMap(map['boardGame']),
-        savedState = map['savedState'],
-        createdAt = DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
-        updatedAt = DateTime.fromMillisecondsSinceEpoch(map['updatedAt']);
-}
-
-class CampaignProvider {
-  Database database;
-
-  CampaignProvider({required this.database});
-
-  Future<Campaign> insert(Campaign campaign) async {
-    campaign.id = await database.insert(tableCampaign, campaign.toMap());
-    return campaign;
+  factory Campaign.fromMap(Map<String, dynamic> map) {
+    Map<String, dynamic> parsedSavedState = {};
+    if (map['savedState'] != null) {
+      parsedSavedState = jsonDecode(map['savedState']);
+    }
+    return Campaign(
+        id: map['id'],
+        name: map['name'],
+        boardGame: map['board_game_id'],
+        savedState: parsedSavedState,
+        createdAt: DateTime.parse(map['createdAt']),
+        updatedAt: DateTime.parse(map['updatedAt']));
   }
 }

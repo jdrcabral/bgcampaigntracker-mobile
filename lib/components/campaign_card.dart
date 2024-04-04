@@ -2,7 +2,15 @@ import 'package:campaigntrackerflutter/screens/campaign_detail.dart';
 import 'package:flutter/material.dart';
 
 class CampaignCard extends StatelessWidget {
-  const CampaignCard({Key? key}) : super(key: key);
+  final String title;
+  final int id;
+  final DateTime updatedAt;
+  const CampaignCard(
+      {Key? key,
+      required this.id,
+      required this.title,
+      required this.updatedAt})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +26,13 @@ class CampaignCard extends StatelessWidget {
           debugPrint('Card tapped.');
           // Navigator.pushNamed(context, '/campaigns');
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const CampaignDetail()));
+              MaterialPageRoute(builder: (context) => CampaignDetail(id: id)));
         },
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-          const ListTile(
-            leading: Icon(Icons.album),
-            title: Text('The Enchanted Nightingale'),
-            subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+          ListTile(
+            leading: Icon(Icons.gamepad),
+            title: Text(title),
+            subtitle: Text('Updated at: ${updatedAt.toIso8601String()}'),
           ),
         ]),
       ),
