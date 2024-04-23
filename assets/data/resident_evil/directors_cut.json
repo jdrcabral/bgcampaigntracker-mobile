@@ -1,0 +1,39 @@
+{
+    "narratives": [
+        "Animosity",
+        "Assassination",
+        "Clearing Your Name",
+        "Crow's Nest",
+        "Damning Evidence",
+        "Dangerous To Go Alone",
+        "Deadly Pursuit",
+        "How Convenient",
+        "Isolated Area",
+        "Overcoming The Odds",
+        "Spider Lair",
+        "Traitor In The Ranks",
+        "Unending Nightmare"
+    ],
+    "tensionCards": [
+        {
+            "name": "Sabotage",
+            "value": "Amber"
+        }
+    ],
+    "missions": [
+        "Above And Beyond",
+        "Proving Their Innocence",
+        "Rooting Out The Traitor",
+        "Travel To Item Box"
+    ],
+    "characters": [
+        "Albert Wesker",
+        "Brad Vickers",
+        "Edward Dewey",
+        "Enrico Marini",
+        "Forest Speyer",
+        "Joseph Frost",
+        "Kenneth J. Sullivan",
+        "Richard Aiken"
+    ]
+}

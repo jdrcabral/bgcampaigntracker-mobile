@@ -1,0 +1,85 @@
+{
+    "narratives": [
+        "Bleeding Out",
+        "Extermination",
+        "Festering Wound",
+        "Harrowing End",
+        "Impervious Hide",
+        "Mellow And Yellow",
+        "Narrow Escape",
+        "Overcome",
+        "Researcher's Diary",
+        "Save Room",
+        "Seeds Of Mistrust",
+        "Soldier's Note",
+        "Something Valuable",
+        "Tiger Puzzle",
+        "Traitor Among Us",
+        "Trapped"
+    ],
+    "missions": [
+        "Blue Gem Into The Tiger Statue",
+        "Problem Solving",
+        "Securing An Escape Route",
+        "Teamwork",
+        "Yellow Gem Into The Tiger Statue"
+    ],
+    "tensionCards": [
+        {
+            "name": "Respite",
+            "value": "Green"
+        },
+        {
+            "name": "Supply Cache",
+            "value": "Green"
+        },
+        {
+            "name": "Bee Swarm",
+            "value": "Amber"
+        },
+        {
+            "name": "Diseased Claws",
+            "value": "Amber"
+        },
+        {
+            "name": "Flickering Lights",
+            "value": "Amber"
+        },
+        {
+            "name": "From The Depths",
+            "value": "Amber"
+        },
+        {
+            "name": "Sinister Echoes",
+            "value": "Amber"
+        },
+        {
+            "name": "Sinister Hiss",
+            "value": "Amber"
+        },
+        {
+            "name": "Treacherous Footing",
+            "value": "Amber"
+        },
+        {
+            "name": "Virulent Blood",
+            "value": "Amber"
+        },
+        {
+            "name": "Waterlogged",
+            "value": "Amber"
+        },
+        {
+            "name": "Infestation",
+            "value": "Red"
+        },
+        {
+            "name": "Overrun",
+            "value": "Red"
+        },
+        {
+            "name": "Waterway Open",
+            "value": "Red"
+        }
+    ]
+}

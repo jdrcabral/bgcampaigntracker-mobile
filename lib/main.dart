@@ -1,6 +1,7 @@
 import 'package:campaigntrackerflutter/components/campaign_card.dart';
 import 'package:campaigntrackerflutter/data/database_service.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
+import 'package:campaigntrackerflutter/screens/campaign_creation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Board Campaign Tracker'),
     );
   }
 }
@@ -77,6 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CampaignCreation()));
   }
 
   @override
@@ -112,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemBuilder: (context, index) {
                   final campaign = snapshot.data![index];
                   return CampaignCard(
-                    id: campaign.id,
+                    id: campaign.id!,
                     title: campaign.name,
                     updatedAt: campaign.updatedAt,
                   );

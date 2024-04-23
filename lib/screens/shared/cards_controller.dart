@@ -1,5 +1,6 @@
 import 'package:campaigntrackerflutter/components/card_navigator.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
+import 'package:campaigntrackerflutter/models/resident_evil_campaign_notifier.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -128,8 +129,9 @@ class _CardsControllerState extends State<CardsController>
               ),
               child: const Text('Add'),
               onPressed: () {
-                Provider.of<CampaignStatus>(context, listen: false)
-                    .updateSavedState(widget.stateKey, selectedItem);
+                Provider.of<ResidentEvilCampaignNotifier>(context,
+                        listen: false)
+                    .addValue(widget.stateKey, selectedItem);
                 Navigator.of(context).pop();
               },
             ),

@@ -6,7 +6,7 @@ import 'dart:convert';
 const String tableCampaign = "campaigns";
 
 class Campaign {
-  int id;
+  int? id;
   String name;
   int boardGame;
   Map<String, dynamic> savedState;
@@ -14,7 +14,7 @@ class Campaign {
   DateTime updatedAt;
 
   Campaign({
-    required this.id,
+    this.id,
     required this.name,
     required this.boardGame,
     required this.savedState,

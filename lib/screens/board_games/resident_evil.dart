@@ -3,6 +3,7 @@ import 'package:campaigntrackerflutter/components/expansion_panel.dart';
 import 'package:campaigntrackerflutter/components/increase_decrease.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
+import 'package:campaigntrackerflutter/models/resident_evil_campaign_notifier.dart';
 import 'package:campaigntrackerflutter/screens/shared/cards_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -56,6 +57,7 @@ class _ResidentEvilCampaignState extends State<ResidentEvilCampaign>
                 children: [
                   Center(
                       child: Container(
+                    padding: const EdgeInsets.all(30.0),
                     child: Column(children: const [
                       Text(
                         'Threat Level',
@@ -98,20 +100,34 @@ class _ResidentEvilCampaignState extends State<ResidentEvilCampaign>
                                         campaignStatus.savedState['itemBox'] ??
                                             [],
                                   ))),
-                      CardNavigator(
-                          cardTitle: 'Item A',
-                          navigateTo: CardsController(
-                            title: 'Item A',
-                            stateKey: 'itemA',
-                            options: [],
-                            items: [],
-                          )),
+                      ChangeNotifierProvider<ResidentEvilCampaignNotifier>(
+                        create: (context) => ResidentEvilCampaignNotifier(
+                            widget.campaign.savedState),
+                        builder: (context, child) =>
+                            Consumer<ResidentEvilCampaignNotifier>(
+                                builder: (context, campaignStatus, child) =>
+                                    CardNavigator(
+                                        cardTitle: 'Item A',
+                                        navigateTo: CardsController(
+                                          title: 'Item A',
+                                          stateKey: 'itemA',
+                                          options: widget
+                                              .campaign.savedState["items"],
+                                          items: campaignStatus.itemA
+                                              .map((e) => e.name)
+                                              .toList(),
+                                        ))),
+                      ),
                       CardNavigator(
                           cardTitle: 'Tension Deck',
                           navigateTo: CardsController(
                             title: 'Tension Deck',
                             stateKey: 'tensionDeck',
-                            options: [],
+                            options: (widget.campaign.savedState["tensionCards"]
+                                    as List<dynamic>)
+                                .map((item) =>
+                                    "(${item['value']}) ${item['name']}")
+                                .toList(),
                             items: [],
                           )),
                       CardNavigator(

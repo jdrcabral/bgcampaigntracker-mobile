@@ -11,6 +11,18 @@ class CampaignStatus extends ChangeNotifier {
     notifyListeners();
   }
 
+  dynamic retrieveValue(Map<String, dynamic> map, String key) {
+    if (map.containsKey(key)) {
+      return map[key];
+    } else if (key.contains(".")) {
+      List<String> keyPath = key.split(".");
+      return retrieveValue(map[keyPath[0]], keyPath.sublist(1).join("."));
+    } else {
+      return null;
+      // throw ("Key not found");
+    }
+  }
+
   Map<String, dynamic> _updateValue(
       Map<String, dynamic> map, String key, dynamic value) {
     if (map.containsKey(key)) {
