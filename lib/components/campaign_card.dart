@@ -6,11 +6,10 @@ class CampaignCard extends StatelessWidget {
   final int id;
   final DateTime updatedAt;
   const CampaignCard(
-      {Key? key,
+      {super.key,
       required this.id,
       required this.title,
-      required this.updatedAt})
-      : super(key: key);
+      required this.updatedAt});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class CampaignCard extends StatelessWidget {
         },
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           ListTile(
-            leading: Icon(Icons.gamepad),
+            leading: const Icon(Icons.gamepad),
             title: Text(title),
             subtitle: Text('Updated at: ${updatedAt.toIso8601String()}'),
           ),

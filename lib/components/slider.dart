@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SliderComponent extends StatefulWidget {
-  const SliderComponent({Key? key}) : super(key: key);
+  const SliderComponent({super.key});
 
   @override
   _SliderComponentState createState() => _SliderComponentState();

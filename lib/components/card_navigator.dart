@@ -5,8 +5,7 @@ class CardNavigator extends StatelessWidget {
   final Widget navigateTo;
 
   const CardNavigator(
-      {Key? key, required this.cardTitle, required this.navigateTo})
-      : super(key: key);
+      {super.key, required this.cardTitle, required this.navigateTo});
 
   @override
   Widget build(BuildContext context) {

@@ -3,21 +3,19 @@ import 'package:campaigntrackerflutter/components/expansion_panel.dart';
 import 'package:campaigntrackerflutter/components/increase_decrease.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
-import 'package:campaigntrackerflutter/models/resident_evil_campaign_notifier.dart';
 import 'package:campaigntrackerflutter/screens/shared/cards_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ResidentEvilCampaign extends StatefulWidget {
+class ResidentEvilCampaign extends ConsumerStatefulWidget {
   final Campaign campaign;
-  const ResidentEvilCampaign({Key? key, required this.campaign})
-      : super(key: key);
+  const ResidentEvilCampaign({super.key, required this.campaign});
 
   @override
   _ResidentEvilCampaignState createState() => _ResidentEvilCampaignState();
 }
 
-class _ResidentEvilCampaignState extends State<ResidentEvilCampaign>
+class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   @override
@@ -34,9 +32,8 @@ class _ResidentEvilCampaignState extends State<ResidentEvilCampaign>
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<CampaignStatus>(
-        create: (context) => CampaignStatus(widget.campaign.savedState),
-        builder: (context, child) => Scaffold(
+    ref.read(campaignSavedStatusProvider).loadCampaignState(widget.campaign.savedState);
+    return Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
                 title: Text(widget.campaign.name),
@@ -58,12 +55,12 @@ class _ResidentEvilCampaignState extends State<ResidentEvilCampaign>
                   Center(
                       child: Container(
                     padding: const EdgeInsets.all(30.0),
-                    child: Column(children: const [
+                    child: const Column(children: [
                       Text(
                         'Threat Level',
                         style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
-                      IncreaseDecreaseTextField(counter: 5),
+                      IncreaseDecreaseTextField(counter: 5, stateKey: "threatLevel",),
                       Text(
                         'Notes',
                         style: TextStyle(color: Colors.black, fontSize: 20),
@@ -76,83 +73,71 @@ class _ResidentEvilCampaignState extends State<ResidentEvilCampaign>
                   )),
                   Center(
                       child: Container(
-                    child: Column(children: const [
-                      Text('Game characters goes here',
-                          style: TextStyle(color: Colors.black)),
-                      ExpansionPanelListExample(),
-                      Text('Reserve Characters',
-                          style: TextStyle(color: Colors.black)),
-                    ]),
+                        child: const Column(children: [
+                          Text('Game characters goes here',
+                              style: TextStyle(color: Colors.black)),
+                          ExpansionPanelListExample(),
+                          Text('Reserve Characters',
+                              style: TextStyle(color: Colors.black)),
+                        ]),
                   )),
                   Center(
                       child: Column(
                     children: [
-                      Consumer<CampaignStatus>(
-                          builder: (context, campaignStatus, child) =>
                               CardNavigator(
                                   cardTitle: 'Item Box',
                                   navigateTo: CardsController(
                                     title: 'Item Box',
                                     stateKey: 'itemBox',
                                     options:
-                                        widget.campaign.savedState["items"],
-                                    items:
-                                        campaignStatus.savedState['itemBox'] ??
-                                            [],
-                                  ))),
-                      ChangeNotifierProvider<ResidentEvilCampaignNotifier>(
-                        create: (context) => ResidentEvilCampaignNotifier(
-                            widget.campaign.savedState),
-                        builder: (context, child) =>
-                            Consumer<ResidentEvilCampaignNotifier>(
-                                builder: (context, campaignStatus, child) =>
+                                    widget.campaign.savedState["selectOptions"]["items"],
+                                    items: ref.watch(campaignSavedStatusProvider).savedState["itemBox"],
+                                  )),
+
                                     CardNavigator(
                                         cardTitle: 'Item A',
                                         navigateTo: CardsController(
                                           title: 'Item A',
                                           stateKey: 'itemA',
-                                          options: widget
-                                              .campaign.savedState["items"],
-                                          items: campaignStatus.itemA
-                                              .map((e) => e.name)
-                                              .toList(),
-                                        ))),
+                                          options: widget.campaign.savedState["selectOptions"]["items"],
+                                          items: ref.watch(campaignSavedStatusProvider).savedState["itemA"],
+                                        ),
                       ),
                       CardNavigator(
                           cardTitle: 'Tension Deck',
                           navigateTo: CardsController(
                             title: 'Tension Deck',
                             stateKey: 'tensionDeck',
-                            options: (widget.campaign.savedState["tensionCards"]
+                            options: (widget.campaign.savedState["selectOptions"]["tensionCards"]
                                     as List<dynamic>)
                                 .map((item) =>
                                     "(${item['value']}) ${item['name']}")
                                 .toList(),
-                            items: [],
+                            items: ref.watch(campaignSavedStatusProvider).savedState["tensionDeck"],
                           )),
                       CardNavigator(
                           cardTitle: 'Narrative Deck',
                           navigateTo: CardsController(
                             title: 'Narrative Deck',
                             stateKey: 'narrativeDeck',
-                            options: widget.campaign.savedState["narrative"],
-                            items: [],
+                            options: widget.campaign.savedState["selectOptions"]["narratives"],
+                            items: ref.watch(campaignSavedStatusProvider).savedState["narrativeDeck"],
                           )),
                       CardNavigator(
                           cardTitle: 'Mission Deck',
                           navigateTo: CardsController(
                             title: 'Mission Deck',
                             stateKey: 'missionDeck',
-                            options: widget.campaign.savedState["mission"],
-                            items: [],
+                            options: widget.campaign.savedState["selectOptions"]["missions"],
+                            items: ref.watch(campaignSavedStatusProvider).savedState["missionDeck"],
                           )),
                       CardNavigator(
                           cardTitle: 'Encounter Deck',
                           navigateTo: CardsController(
                             title: 'Encounter Deck',
                             stateKey: 'encounterDeck',
-                            options: [],
-                            items: [],
+                            options: widget.campaign.savedState["selectOptions"]["encounters"],
+                            items: ref.watch(campaignSavedStatusProvider).savedState["encounterDeck"],
                           )),
                     ],
                   )),
@@ -161,6 +146,6 @@ class _ResidentEvilCampaignState extends State<ResidentEvilCampaign>
                           style: TextStyle(color: Colors.black))),
                 ],
               ),
-            ));
+            );
   }
 }

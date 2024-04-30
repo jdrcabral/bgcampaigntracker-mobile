@@ -4,11 +4,12 @@ import 'package:campaigntrackerflutter/data/models/campaign.dart';
 import 'package:campaigntrackerflutter/screens/campaign_creation.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  DatabaseService();
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -79,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CampaignCreation()));
+        context, MaterialPageRoute(builder: (context) => const CampaignCreation()));
   }
 
   @override

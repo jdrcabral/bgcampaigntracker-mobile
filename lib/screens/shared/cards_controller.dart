@@ -1,28 +1,25 @@
-import 'package:campaigntrackerflutter/components/card_navigator.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
-import 'package:campaigntrackerflutter/models/resident_evil_campaign_notifier.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CardsController extends StatefulWidget {
+class CardsController extends ConsumerStatefulWidget {
   final String title;
   final String stateKey;
   final List<dynamic> options;
   final List<dynamic> items;
   const CardsController(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.stateKey,
       required this.options,
-      required this.items})
-      : super(key: key);
+      required this.items});
 
   @override
   _CardsControllerState createState() => _CardsControllerState();
 }
 
-class _CardsControllerState extends State<CardsController>
+class _CardsControllerState extends ConsumerState<CardsController>
     with SingleTickerProviderStateMixin {
   String selectedItem = "";
   List<String> _castListToString(List<dynamic> list) {
@@ -43,7 +40,7 @@ class _CardsControllerState extends State<CardsController>
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: ListView.builder(
-          itemCount: widget.items.length,
+          itemCount: ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey].length,
           itemBuilder: (context, index) => Card(
             surfaceTintColor: Colors.grey[350],
             shadowColor: Colors.black,
@@ -57,7 +54,7 @@ class _CardsControllerState extends State<CardsController>
                       padding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, top: 10.0),
                       child: Text(
-                        widget.items[index],
+                        ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey][index],
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -66,9 +63,16 @@ class _CardsControllerState extends State<CardsController>
                   Container(
                     padding: const EdgeInsets.only(top: 10.0),
                     child: IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: const Icon(Icons.delete),
                       color: Colors.red,
                       onPressed: () {
+                        ref.read(campaignSavedStatusProvider.notifier).update((state) {
+                          CampaignSavedStatus clonedState = state.clone();
+                          if (clonedState.savedState[widget.stateKey] is List) {
+                            (clonedState.savedState[widget.stateKey] as List<dynamic>).removeAt(index);
+                          }
+                          return clonedState;
+                        });
                         // Add functionality to delete the card here
                       },
                       alignment: Alignment.topRight,
@@ -90,7 +94,7 @@ class _CardsControllerState extends State<CardsController>
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           selectedItem = "";
           _dialogBuilder(context, widget.title);
@@ -129,9 +133,13 @@ class _CardsControllerState extends State<CardsController>
               ),
               child: const Text('Add'),
               onPressed: () {
-                Provider.of<ResidentEvilCampaignNotifier>(context,
-                        listen: false)
-                    .addValue(widget.stateKey, selectedItem);
+                ref.read(campaignSavedStatusProvider.notifier).update((state) {
+                  CampaignSavedStatus clonedState = state.clone();
+                  if (clonedState.savedState[widget.stateKey] is List) {
+                    (clonedState.savedState[widget.stateKey] as List<dynamic>).add(selectedItem);
+                  }
+                  return clonedState;
+                });
                 Navigator.of(context).pop();
               },
             ),

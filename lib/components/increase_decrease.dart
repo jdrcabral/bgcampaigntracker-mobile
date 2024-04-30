@@ -1,21 +1,24 @@
-import 'package:campaigntrackerflutter/data/models/campaign.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class IncreaseDecreaseTextField extends StatefulWidget {
+class IncreaseDecreaseTextField extends ConsumerStatefulWidget {
   final int counter;
-  const IncreaseDecreaseTextField({Key? key, required this.counter})
-      : super(key: key);
+  final String stateKey;
+  const IncreaseDecreaseTextField({super.key, required this.counter, required this.stateKey});
 
   @override
   _IncreaseDecreaseTextFieldState createState() =>
       _IncreaseDecreaseTextFieldState();
 }
 
-class _IncreaseDecreaseTextFieldState extends State<IncreaseDecreaseTextField> {
+class _IncreaseDecreaseTextFieldState extends ConsumerState<IncreaseDecreaseTextField> {
   void updateCounter(int value) {
-    Provider.of<CampaignStatus>(context, listen: false).threatLevel = value;
+    ref.read(campaignSavedStatusProvider.notifier).update((state) {
+      CampaignSavedStatus clonedState = state.clone();
+      clonedState.savedState[widget.stateKey] = value;
+      return clonedState;
+    });
   }
 
   @override
@@ -23,27 +26,23 @@ class _IncreaseDecreaseTextFieldState extends State<IncreaseDecreaseTextField> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Consumer<CampaignStatus>(
-            builder: (context, campaignStatus, child) => IconButton(
-                  icon: Icon(Icons.remove),
-                  onPressed: () {
-                    if (campaignStatus.threatLevel > 0) {
-                      updateCounter(campaignStatus.threatLevel - 1);
-                    }
-                  },
-                )),
-        Consumer<CampaignStatus>(
-            builder: (context, campaignStatus, child) => Text(
-                  '${campaignStatus.threatLevel}',
-                  style: const TextStyle(fontSize: 20),
-                )),
-        Consumer<CampaignStatus>(
-            builder: (context, campaignStatus, child) => IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {
-                    updateCounter(campaignStatus.threatLevel + 1);
-                  },
-                )),
+        IconButton(
+          icon: const Icon(Icons.remove),
+          onPressed: () {
+            if (ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey] > 0) {
+              updateCounter(ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey] - 1);
+            }
+          }),
+        Text(
+          '${ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey]}',
+          style: const TextStyle(fontSize: 20),
+        ),
+        IconButton(
+          icon: const Icon(Icons.add),
+          onPressed: () {
+            updateCounter(ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey] + 1);
+            },
+        ),
       ],
     );
   }

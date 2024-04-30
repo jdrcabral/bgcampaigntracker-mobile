@@ -1,19 +1,15 @@
-import 'package:campaigntrackerflutter/components/expansion_panel.dart';
-import 'package:campaigntrackerflutter/components/increase_decrease.dart';
 import 'package:campaigntrackerflutter/data/database_service.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
-import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:campaigntrackerflutter/screens/board_games/resident_evil.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CampaignDetail extends StatefulWidget {
   final int id;
 
   const CampaignDetail({
-    Key? key,
+    super.key,
     required this.id,
-  }) : super(key: key);
+  });
 
   @override
   _CampaignDetailState createState() => _CampaignDetailState();

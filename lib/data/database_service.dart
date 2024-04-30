@@ -162,7 +162,7 @@ class DatabaseService {
         (index) => BoardGame.fromMap(retrievedBoardGames[index]));
   }
 
-  Future<void> createCampaing(Map<String, Object> data) async {
+  Future<void> createCampaign(Map<String, Object> data) async {
     final db = await _databaseService.database;
     await db.insert(tableCampaign, data);
   }

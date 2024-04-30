@@ -12,7 +12,7 @@ class TabData {
 class CampaignDetail extends StatefulWidget {
   final List<TabData> tabs; // Accept a list of tabs as a parameter
 
-  const CampaignDetail({Key? key, required this.tabs}) : super(key: key);
+  const CampaignDetail({super.key, required this.tabs});
 
   @override
   _CampaignDetailState createState() => _CampaignDetailState();
@@ -40,7 +40,7 @@ class _CampaignDetailState extends State<CampaignDetail>
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text('Game Detail'),
+        title: const Text('Game Detail'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         bottom: TabBar(
           controller: _tabController,

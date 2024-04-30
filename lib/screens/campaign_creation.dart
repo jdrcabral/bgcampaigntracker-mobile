@@ -1,29 +1,30 @@
 import 'package:campaigntrackerflutter/application/campaign_builder/campaign_builder.dart';
+import 'package:campaigntrackerflutter/controllers/board_game_expansion.dart';
 import 'package:campaigntrackerflutter/data/database_service.dart';
 import 'package:campaigntrackerflutter/data/models/board_game.dart';
-import 'package:campaigntrackerflutter/screens/campaign_detail.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
-class CampaignCreation extends StatefulWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class CampaignCreation extends ConsumerStatefulWidget  {
   const CampaignCreation({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _CampaignCreationState createState() => _CampaignCreationState();
 }
 
-class _CampaignCreationState extends State<CampaignCreation> {
+class _CampaignCreationState extends ConsumerState<CampaignCreation> {
   final DatabaseService _databaseService = DatabaseService();
   late int? parentId;
   final TextEditingController _campaignTitle = TextEditingController();
-  late List<bool> expansionSelected;
-  late bool _buildExpansionSelected;
-  late List<int>? expansionIds;
   late bool _isLoading = false;
+  late bool _expansionLoaded = false;
   List<int> boardGameIds = [];
-
+  List<bool> expansionSelected = [];
+  List<int> expansionIds = [];
   @override
   void initState() {
     super.initState();
@@ -31,16 +32,12 @@ class _CampaignCreationState extends State<CampaignCreation> {
     parentId = null;
     _campaignTitle.text = "";
     expansionSelected = [];
-    _buildExpansionSelected = true;
+    expansionIds = [];
+    _expansionLoaded = false;
   }
 
   Future<List<BoardGame>> _listBoardGames() async {
     return await _databaseService.listBoardGames(true);
-  }
-
-  Future<List<BoardGame>?> _listExpansions(int? parentId) async {
-    if (parentId == null) return null;
-    return await _databaseService.listBoardGamesExpansions(parentId);
   }
 
   Future<List<BoardGame>> _retrieveComponents(List<int> boardGamesId) async {
@@ -48,11 +45,12 @@ class _CampaignCreationState extends State<CampaignCreation> {
   }
 
   Future<void> _createCampaign(Map<String, Object> campaign) async {
-    return await _databaseService.createCampaing(campaign);
+    return await _databaseService.createCampaign(campaign);
   }
 
   @override
   Widget build(BuildContext context) {
+    final expansionsProvider = ref.watch(futureExpansionsProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -64,7 +62,7 @@ class _CampaignCreationState extends State<CampaignCreation> {
         child: FutureBuilder(
           future: _listBoardGames(),
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            if (!snapshot.hasData) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
@@ -86,8 +84,8 @@ class _CampaignCreationState extends State<CampaignCreation> {
                   onChanged: (value) {
                     setState(() {
                       parentId = value;
-                      _buildExpansionSelected = true;
                     });
+                    ref.watch(parentIdProvider.notifier).state = value;
                   },
                   decoration: const InputDecoration(
                     labelText: "Board Game",
@@ -95,24 +93,22 @@ class _CampaignCreationState extends State<CampaignCreation> {
                 ),
                 const Divider(),
                 const Text("Expansions"),
-                FutureBuilder(
-                    future: _listExpansions(parentId),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        if (_buildExpansionSelected) {
+                expansionsProvider.when(
+                    data: (expansions) {
+                      if (expansions.isNotEmpty) {
+                        if (!_expansionLoaded) {
                           expansionSelected =
-                              List.filled(snapshot.data!.length, false);
-                          _buildExpansionSelected = false;
+                              List.filled(expansions.length, false);
+                          expansionIds = List.generate(expansions.length, (
+                              index) => expansions[index].id);
+                          _expansionLoaded = true;
                         }
-                        expansionIds = List.generate(snapshot.data!.length,
-                                (index) => snapshot.data![index].id);
-
                         return ListView.builder(
-                          itemCount: snapshot.data!.length,
+                          itemCount: expansions.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return CheckboxListTile(
-                              title: Text(snapshot.data![index].name),
+                              title: Text(expansions[index].name),
                               value: expansionSelected[index],
                               onChanged: (bool? value) {
                                 if (value == null) return;
@@ -124,13 +120,13 @@ class _CampaignCreationState extends State<CampaignCreation> {
                           },
                         );
                       }
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
                       return const Text("No expansion found");
-                    }),
+                    },
+                    error: (e, _) => const Center(child: Text("Error"),),
+                    loading: () => const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                ),
                 ElevatedButton(
                     onPressed: _isLoading
                         ? null
@@ -144,7 +140,7 @@ class _CampaignCreationState extends State<CampaignCreation> {
                                 i < expansionSelected.length;
                                 i++) {
                               if (expansionSelected[i]) {
-                                boardGameIds.add(expansionIds![i]);
+                                boardGameIds.add(expansionIds[i]);
                               }
                             }
                             List<BoardGame> boardGames =
@@ -155,7 +151,7 @@ class _CampaignCreationState extends State<CampaignCreation> {
                                 CampaignBuilder()
                                     .build(baseGame.key, boardGames);
                             Map<String, Object> campaign = {
-                              "boardGame": parentId!,
+                              "board_game_id": parentId!,
                               "name": _campaignTitle.text,
                               "savedState": jsonEncode(createdCampaign),
                             };
