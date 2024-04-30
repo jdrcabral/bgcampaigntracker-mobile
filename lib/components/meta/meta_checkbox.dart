@@ -9,16 +9,16 @@ class TabData {
   TabData({required this.icon, required this.text, required this.content});
 }
 
-class MetaCheckbox extends StatefulWidget {
+class CampaignDetail extends StatefulWidget {
   final List<TabData> tabs; // Accept a list of tabs as a parameter
 
-  const MetaCheckbox({Key? key, required this.tabs}) : super(key: key);
+  const CampaignDetail({super.key, required this.tabs});
 
   @override
-  _MetaCheckboxState createState() => _MetaCheckboxState();
+  _CampaignDetailState createState() => _CampaignDetailState();
 }
 
-class _MetaCheckboxState extends State<MetaCheckbox>
+class _CampaignDetailState extends State<CampaignDetail>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 

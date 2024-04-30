@@ -9,7 +9,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ResidentEvilCampaign extends ConsumerStatefulWidget {
   final Campaign campaign;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4023ac1 (feat: fixed provider issues)
   const ResidentEvilCampaign({super.key, required this.campaign});
 
   @override
