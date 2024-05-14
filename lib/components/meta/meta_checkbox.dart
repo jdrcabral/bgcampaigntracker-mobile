@@ -9,16 +9,16 @@ class TabData {
   TabData({required this.icon, required this.text, required this.content});
 }
 
-class CampaignDetail extends StatefulWidget {
+class MetaCheckbox extends StatefulWidget {
   final List<TabData> tabs; // Accept a list of tabs as a parameter
 
-  const CampaignDetail({super.key, required this.tabs});
+  const MetaCheckbox({Key? key, required this.tabs}) : super(key: key);
 
   @override
-  _CampaignDetailState createState() => _CampaignDetailState();
+  _MetaCheckboxState createState() => _MetaCheckboxState();
 }
 
-class _CampaignDetailState extends State<CampaignDetail>
+class _MetaCheckboxState extends State<MetaCheckbox>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -40,7 +40,7 @@ class _CampaignDetailState extends State<CampaignDetail>
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: const Text('Game Detail'),
+        title: Text('Game Detail'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         bottom: TabBar(
           controller: _tabController,
