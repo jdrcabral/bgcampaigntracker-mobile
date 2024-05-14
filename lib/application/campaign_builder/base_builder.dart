@@ -33,7 +33,7 @@ class BaseCampaingBuilder {
   void sortItems() {
     savedState.forEach((key, value) {
       if (value is List) {
-        value.sort();
+        if (value.isNotEmpty && value.first is String) value.sort();
       }
     });
   }

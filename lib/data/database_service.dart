@@ -93,12 +93,6 @@ class DatabaseService {
     };
     await db.insert(tableBoardGame, re,
         conflictAlgorithm: ConflictAlgorithm.replace);
-    Map<String, Object?> campaign = {
-      'name': 'Resident Evil',
-      'board_game_id': 1,
-      'savedState': jsonString,
-    };
-    await db.insert(tableCampaign, campaign);
   }
 
   Future<Campaign> insertCampaign(Campaign campaign) async {

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class IncreaseDecreaseTextField extends ConsumerStatefulWidget {
-  final int counter;
   final String stateKey;
-  const IncreaseDecreaseTextField({super.key, required this.counter, required this.stateKey});
+  final MainAxisAlignment mainAxisAlignment;
+  const IncreaseDecreaseTextField({super.key, required this.stateKey, this.mainAxisAlignment = MainAxisAlignment.center});
 
   @override
   _IncreaseDecreaseTextFieldState createState() =>
@@ -24,7 +24,7 @@ class _IncreaseDecreaseTextFieldState extends ConsumerState<IncreaseDecreaseText
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: widget.mainAxisAlignment,
       children: <Widget>[
         IconButton(
           icon: const Icon(Icons.remove),

@@ -13,6 +13,7 @@ class ResidentEvilBuilder extends BaseCampaingBuilder {
   void handleBuild(List<BoardGame> boardGames) {
     _generalConfiguration();
     for (var element in boardGames) {
+      _buildCharacters(element);
       _buildScenarios(element);
       _buildSelectOptions(element);
     }
@@ -22,6 +23,7 @@ class ResidentEvilBuilder extends BaseCampaingBuilder {
     savedState.putIfAbsent("threatLevel", () => 0);
     savedState.putIfAbsent("notes", () => "");
     savedState.putIfAbsent("characters", () => []);
+    savedState.putIfAbsent("reserve", () => []);
     Map<String, List<dynamic>> convertedMap = {
       for (String option in selectOptions) option: [],
     };
@@ -38,9 +40,36 @@ class ResidentEvilBuilder extends BaseCampaingBuilder {
     savedState.putIfAbsent("scenarios", () => []);
   }
 
+  void _buildCharacters(BoardGame boardGame) {
+    if (!boardGame.isExpansion) {
+      List<dynamic> characters = boardGame.components!["characters"] ?? [];
+      for (var element in characters) {
+        (savedState["reserve"] as List<dynamic>).add({
+          "name": element,
+          "unlocked": true,
+          "dead": false,
+          "advanced": false,
+          "health": 5,
+        });
+      }
+    }
+    if (!boardGame.components!.containsKey("characters")) return;
+    var component = boardGame.components!["characters"];
+
+    (component as List<dynamic>).forEach((element) {
+      (savedState["reserve"] as List<dynamic>).add({
+        "name": element,
+        "unlocked": false,
+        "dead": false,
+        "advanced": false,
+        "health": 5,
+      });
+    });
+  }
+
   void _buildScenarios(BoardGame boardGames) {
     if (!boardGames.components!.containsKey("scenarios")) return;
-    var component = boardGames.components!.containsKey("scenarios");
+    var component = boardGames.components!["scenarios"];
     savedState.update("scenarios", (value) => component,
         ifAbsent: () => [component]);
   }
