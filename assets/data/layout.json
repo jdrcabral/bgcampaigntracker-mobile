@@ -1,0 +1,39 @@
+{
+  "type": "tab",
+  "children": [
+    {
+      "label": "Title",
+      "icon": "home",
+      "type": "tabContent",
+      "content": {
+        "type": "verticalContainer",
+        "children": [
+          {
+            "type": "text",
+            "label": "Threat Level"
+          },
+          {
+            "type": "increaseDecrease",
+            "ref": "threatLevel"
+          },
+          {
+            "type": "text",
+            "label": "Notes"
+          },
+          {
+            "type": "input",
+            "inputType": "multiline"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Another Tab",
+      "type": "tabContent",
+      "content": {
+        "type": "text",
+        "label": "Another Test"
+      }
+    }
+  ]
+}
