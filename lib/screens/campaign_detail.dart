@@ -1,7 +1,11 @@
+import 'dart:convert';
+
+import 'package:campaigntrackerflutter/components/meta/meta_handler.dart';
 import 'package:campaigntrackerflutter/data/database_service.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
 import 'package:campaigntrackerflutter/screens/board_games/resident_evil.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CampaignDetail extends StatefulWidget {
   final int id;
@@ -30,6 +34,12 @@ class _CampaignDetailState extends State<CampaignDetail>
     return _databaseService.retrieveCampaign(widget.id);
   }
 
+  Future<Map<String, dynamic>> _loadLayout() async {
+    String jsonString = await rootBundle
+        .loadString("assets/data/layout.json");
+    return jsonDecode(jsonString);
+  }
+
   @override
   void dispose() {
     _tabController.dispose();
@@ -40,7 +50,7 @@ class _CampaignDetailState extends State<CampaignDetail>
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: _fetchCampaign(),
+        future: _loadLayout(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -48,15 +58,33 @@ class _CampaignDetailState extends State<CampaignDetail>
             );
           }
           if (snapshot.data != null) {
-            Campaign campaign = snapshot.data!;
-            return ResidentEvilCampaign(campaign: campaign);
+            return MetaHandler(layout: snapshot.data!);
           }
-          // TODO Replace with error
           return const Center(
             child: CircularProgressIndicator(),
           );
         },
       ),
     );
+    // return Container(
+    //   child: FutureBuilder(
+    //     future: _fetchCampaign(),
+    //     builder: (context, snapshot) {
+    //       if (snapshot.connectionState == ConnectionState.waiting) {
+    //         return const Center(
+    //           child: CircularProgressIndicator(),
+    //         );
+    //       }
+    //       if (snapshot.data != null) {
+    //         Campaign campaign = snapshot.data!;
+    //         return ResidentEvilCampaign(campaign: campaign);
+    //       }
+    //       // TODO Replace with error
+    //       return const Center(
+    //         child: CircularProgressIndicator(),
+    //       );
+    //     },
+    //   ),
+    // );
   }
 }

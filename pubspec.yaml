@@ -77,6 +77,7 @@ flutter:
     - assets/data/resident_evil/bleak_outpost.json
     - assets/data/resident_evil/directors_cut.json
     - assets/data/resident_evil/into_the_darkness.json
+    - assets/data/layout.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
