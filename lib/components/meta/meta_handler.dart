@@ -1,5 +1,6 @@
 import 'package:campaigntrackerflutter/components/meta/meta_card.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_checkbox.dart';
+import 'package:campaigntrackerflutter/components/meta/meta_deck_management.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_horizontal_container.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_increase_decrease.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_tab.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 class MetaHandler extends StatefulWidget {
   final Map<String, dynamic> layout;
 
-  const MetaHandler({Key? key, required this.layout}) : super(key: key);
+  const MetaHandler({Key? key, required this.layout }) : super(key: key);
 
   @override
   _MetaHandlerState createState() => _MetaHandlerState();
@@ -41,6 +42,8 @@ class _MetaHandlerState extends State<MetaHandler> {
         return MetaHorizontalContainer(layout: widget.layout);
       case "verticalContainer":
         return MetaVerticalContainer(layout: widget.layout);
+      case "deckManagement":
+        return MetaDeckManagement(layout: widget.layout);
       default:
         return Container();
     }

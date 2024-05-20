@@ -34,6 +34,21 @@
         "type": "text",
         "label": "Another Test"
       }
+    },
+    {
+      "label": "Decks",
+      "type": "tabContent",
+      "content": {
+        "type": "verticalContainer",
+        "children": [
+          {
+            "type": "deckManagement",
+            "ref": "itemA",
+            "source": "items",
+            "label": "Removed Cards"
+          }
+        ]
+      }
     }
   ]
 }
