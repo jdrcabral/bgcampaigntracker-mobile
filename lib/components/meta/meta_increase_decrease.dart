@@ -16,7 +16,7 @@ class _MetaIncreaseDecreaseState extends ConsumerState<MetaIncreaseDecrease> {
   void updateCounter(int value) {
     ref.read(campaignSavedStatusProvider.notifier).update((state) {
       CampaignSavedStatus clonedState = state.clone();
-      clonedState.savedState[widget.stateKey] = value;
+      clonedState.savedState[widget.stateKey] = value.toString();
       return clonedState;
     });
   }
@@ -29,8 +29,11 @@ class _MetaIncreaseDecreaseState extends ConsumerState<MetaIncreaseDecrease> {
         IconButton(
             icon: const Icon(Icons.remove),
             onPressed: () {
-              if (ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey] > 0) {
-                updateCounter(ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey] - 1);
+              int parsedInt = int.parse(ref
+                    .watch(campaignSavedStatusProvider)
+                    .savedState[widget.stateKey]);
+              if (parsedInt > 0) {
+                updateCounter(parsedInt - 1);
               }
             }),
         Text(
@@ -40,7 +43,7 @@ class _MetaIncreaseDecreaseState extends ConsumerState<MetaIncreaseDecrease> {
         IconButton(
           icon: const Icon(Icons.add),
           onPressed: () {
-            updateCounter(ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey] + 1);
+            updateCounter(int.parse(ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey]) + 1);
           },
         ),
       ],

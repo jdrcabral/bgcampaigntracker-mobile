@@ -55,7 +55,10 @@ class _CampaignDetailState extends ConsumerState<CampaignDetail> {
             ref
                 .read(campaignSavedStatusProvider)
                 .loadCampaignState({
-              "threatLevel": 5,
+              "threatLevel": "5",
+              "notes": "",
+              "characters": [],
+              "reserve": [],
               "itemA": [],
             });
             return MetaHandler(layout: snapshot.data![0]);

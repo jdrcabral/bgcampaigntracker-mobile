@@ -22,7 +22,8 @@
           },
           {
             "type": "input",
-            "inputType": "multiline"
+            "inputType": "multiline",
+            "ref": "notes"
           }
         ]
       }
@@ -31,8 +32,37 @@
       "label": "Another Tab",
       "type": "tabContent",
       "content": {
-        "type": "text",
-        "label": "Another Test"
+        "type": "verticalContainer",
+        "children": [
+          {
+            "type": "text",
+            "label": "Another Test"
+          },
+          {
+            "type": "deckManagement",
+            "ref": "characters",
+            "source": "characters",
+            "label": "Characters"
+          },
+          {
+            "type": "customListManagement",
+            "ref": "reserve",
+            "source": "characters",
+            "label": "Reserve",
+            "component": {
+              "type": "card",
+              "child": {
+                "type": "verticalContainer",
+                "children": [
+                  {
+                    "type": "text",
+                    "ref": "characters.index.name"
+                  }
+                ]
+              }
+            }
+          }
+        ]
       }
     },
     {

@@ -1,10 +1,11 @@
+import 'package:campaigntrackerflutter/components/meta/meta_handler.dart';
 import 'package:flutter/material.dart';
 
 class MetaCard extends StatelessWidget {
-  final String title;
+  final Map<String, dynamic> layout;
   const MetaCard(
       {Key? key,
-      required this.title,})
+      required this.layout,})
       : super(key: key);
 
   @override
@@ -17,13 +18,7 @@ class MetaCard extends StatelessWidget {
           debugPrint('Card tapped.');
           // Navigator.pushNamed(context, '/campaigns');
         },
-        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-          ListTile(
-            leading: Icon(Icons.gamepad),
-            title: Text(title),
-            subtitle: Text('Updated at:'),
-          ),
-        ]),
+        child: MetaHandler(layout: layout["child"]),
       ),
     );
   }

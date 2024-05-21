@@ -1,3 +1,4 @@
+import 'package:campaigntrackerflutter/components/meta/meta_handler.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,14 @@ class CardsController extends ConsumerStatefulWidget {
   final String stateKey;
   final List<dynamic> options;
   final List<dynamic> items;
+  final Map<String, dynamic>? component;
   const CardsController(
       {super.key,
       required this.title,
       required this.stateKey,
       required this.options,
-      required this.items});
+      required this.items,
+      this.component });
 
   @override
   _CardsControllerState createState() => _CardsControllerState();
@@ -41,56 +44,61 @@ class _CardsControllerState extends ConsumerState<CardsController>
         padding: const EdgeInsets.all(10.0),
         child: ListView.builder(
           itemCount: ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey].length,
-          itemBuilder: (context, index) => Card(
-            surfaceTintColor: Colors.grey[350],
-            shadowColor: Colors.black,
-            borderOnForeground: true,
-            child: Container(
-              child: Column(children: [
-                Row(children: [
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          left: 10.0, right: 10.0, top: 10.0),
-                      child: Text(
-                        ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey][index],
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+          itemBuilder: (context, index) {
+            if (widget.component != null) {
+              return MetaHandler(layout: widget.component!);
+            }
+            return Card(
+              surfaceTintColor: Colors.grey[350],
+              shadowColor: Colors.black,
+              borderOnForeground: true,
+              child: Container(
+                child: Column(children: [
+                  Row(children: [
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10.0),
+                        child: Text(
+                          ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey][index],
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: IconButton(
+                        icon: const Icon(Icons.delete),
+                        color: Colors.red,
+                        onPressed: () {
+                          ref.read(campaignSavedStatusProvider.notifier).update((state) {
+                            CampaignSavedStatus clonedState = state.clone();
+                            if (clonedState.savedState[widget.stateKey] is List) {
+                              (clonedState.savedState[widget.stateKey] as List<dynamic>).removeAt(index);
+                            }
+                            return clonedState;
+                          });
+                          // Add functionality to delete the card here
+                        },
+                        alignment: Alignment.topRight,
+                      ),
+                    ),
+                  ]),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 10.0, bottom: 10.0),
+                    child: const TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Notes',
                       ),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: IconButton(
-                      icon: const Icon(Icons.delete),
-                      color: Colors.red,
-                      onPressed: () {
-                        ref.read(campaignSavedStatusProvider.notifier).update((state) {
-                          CampaignSavedStatus clonedState = state.clone();
-                          if (clonedState.savedState[widget.stateKey] is List) {
-                            (clonedState.savedState[widget.stateKey] as List<dynamic>).removeAt(index);
-                          }
-                          return clonedState;
-                        });
-                        // Add functionality to delete the card here
-                      },
-                      alignment: Alignment.topRight,
-                    ),
-                  ),
                 ]),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 10.0, right: 10.0, bottom: 10.0),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Notes',
-                    ),
-                  ),
-                ),
-              ]),
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
