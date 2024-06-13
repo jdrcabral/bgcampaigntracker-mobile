@@ -1,6 +1,32 @@
-# campaigntrackerflutter
+# About
 
-Board Game Campaign Tracker
+A mobile application to keep track of multiple board games. 
+
+It's planned to use a structured JSON file that uses a `meta` attribute to dynamically build the board game page.
+
+Example of the JSON file:
+```json
+{
+  "type": "tab",
+  "children": [
+    {
+      "label": "Title",
+      "icon": "home",
+      "type": "tabContent",
+      "content": {
+        "type": "verticalContainer",
+        "children": [
+          {
+            "type": "text",
+            "label": "Threat Level"
+          },
+          ...
+        ]
+      }
+    }
+  ]
+}
+```
 
 ## Getting Started
 
@@ -14,3 +40,4 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
