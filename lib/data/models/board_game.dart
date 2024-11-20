@@ -8,7 +8,7 @@ class BoardGame {
   String name;
   String key;
   bool isExpansion;
-  BoardGame? parent;
+  int? parent;
   Map<String, dynamic>? components;
 
   Map<String, dynamic> toMap() {
@@ -17,7 +17,7 @@ class BoardGame {
       'name': name,
       'key': key,
       'is_expansion': isExpansion,
-      'parent_id': parent,
+      'parent': parent,
       'components': jsonEncode(components)
     };
   }
@@ -35,10 +35,17 @@ class BoardGame {
         name = map['name'],
         key = map['key'],
         isExpansion = map['is_expansion'] != 0,
-        parent = map.containsKey('parent_id') ? map['parent_id'] : null,
+        parent = map.containsKey('parent') ? map['parent'] : null,
         components = map.containsKey('components')
-            ? jsonDecode(map['components'])
+            ? processComponents(map['components'])
             : null;
+}
+
+Map<String, dynamic> processComponents(dynamic components) {
+  if (components.runtimeType == String) {
+    return jsonDecode(components);
+  }
+  return components;
 }
 
 class BoardGameProvider {

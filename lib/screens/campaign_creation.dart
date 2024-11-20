@@ -1,7 +1,8 @@
 import 'package:campaigntrackerflutter/application/campaign_builder/campaign_builder.dart';
 import 'package:campaigntrackerflutter/controllers/board_game_expansion.dart';
-import 'package:campaigntrackerflutter/data/database_service.dart';
 import 'package:campaigntrackerflutter/data/models/board_game.dart';
+import 'package:campaigntrackerflutter/data/services/boardgame_service.dart';
+import 'package:campaigntrackerflutter/data/services/campaign_service.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
@@ -17,7 +18,8 @@ class CampaignCreation extends ConsumerStatefulWidget  {
 }
 
 class _CampaignCreationState extends ConsumerState<CampaignCreation> {
-  final DatabaseService _databaseService = DatabaseService();
+  final CampaignService _campaignService = CampaignService();
+  final BoardgameService _boardGameService = BoardgameService();
   late int? parentId;
   final TextEditingController _campaignTitle = TextEditingController();
   late bool _isLoading = false;
@@ -37,15 +39,15 @@ class _CampaignCreationState extends ConsumerState<CampaignCreation> {
   }
 
   Future<List<BoardGame>> _listBoardGames() async {
-    return await _databaseService.listBoardGames(true);
+    return await _boardGameService.list();
   }
 
   Future<List<BoardGame>> _retrieveComponents(List<int> boardGamesId) async {
-    return await _databaseService.retrieveBoardGamesComponents(boardGamesId);
+    return _boardGameService.retrieveComponents(boardGamesId);
   }
 
   Future<void> _createCampaign(Map<String, Object> campaign) async {
-    return await _databaseService.createCampaign(campaign);
+    return await _campaignService.create(campaign);
   }
 
   @override
@@ -153,7 +155,7 @@ class _CampaignCreationState extends ConsumerState<CampaignCreation> {
                             Map<String, Object> campaign = {
                               "board_game_id": parentId!,
                               "name": _campaignTitle.text,
-                              "savedState": jsonEncode(createdCampaign),
+                              "savedState": createdCampaign,
                             };
                             await _createCampaign(campaign);
                             Navigator.pop(context);

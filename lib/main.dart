@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:campaigntrackerflutter/components/campaign_card.dart';
 import 'package:campaigntrackerflutter/data/database_service.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
+import 'package:campaigntrackerflutter/data/services/campaign_service.dart';
 import 'package:campaigntrackerflutter/screens/campaign_creation.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -64,10 +67,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  final DatabaseService _databaseService = DatabaseService();
+  final CampaignService _campaignService = CampaignService();
 
   Future<List<Campaign>> _getCampaigns() async {
-    return await _databaseService.listCampaign();
+    return await _campaignService.list();
   }
 
   void _incrementCounter() {
@@ -110,7 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: CircularProgressIndicator(),
               );
             }
-
             return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
