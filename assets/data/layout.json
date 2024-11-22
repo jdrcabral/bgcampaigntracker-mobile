@@ -29,14 +29,14 @@
       }
     },
     {
-      "label": "Another Tab",
+      "label": "Characters",
       "type": "tabContent",
       "content": {
         "type": "verticalContainer",
         "children": [
           {
             "type": "text",
-            "label": "Another Test"
+            "label": "Characters"
           },
           {
             "type": "deckManagement",

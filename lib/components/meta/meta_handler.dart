@@ -6,6 +6,7 @@ import 'package:campaigntrackerflutter/components/meta/meta_horizontal_container
 import 'package:campaigntrackerflutter/components/meta/meta_increase_decrease.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_list.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_tab.dart';
+import 'package:campaigntrackerflutter/components/meta/meta_text.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_text_input.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_vertical_container.dart';
 import 'package:flutter/material.dart';
