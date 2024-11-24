@@ -159,6 +159,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["itemBox"],
+                        pathId: "",
                       )),
                   CardNavigator(
                     cardTitle: 'Item A',
@@ -169,6 +170,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                       items: ref
                           .watch(campaignSavedStatusProvider)
                           .savedState["itemA"],
+                      pathId: "",
                     ),
                   ),
                   CardNavigator(
@@ -183,6 +185,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["tensionDeck"],
+                        pathId: "",
                       )),
                   CardNavigator(
                       cardTitle: 'Narrative Deck',
@@ -194,6 +197,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["playedNarratives"],
+                        pathId: "",
                       )),
                   CardNavigator(
                       cardTitle: 'Mission Deck',
@@ -205,6 +209,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["playedMissions"],
+                        pathId: "",
                       )),
                   CardNavigator(
                       cardTitle: 'Encounter Deck',
@@ -216,6 +221,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["encounterDeck"],
+                        pathId: "",
                       )),
                 ],
               )),

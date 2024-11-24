@@ -7,7 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MetaDeckManagement extends ConsumerStatefulWidget {
   final Map<String, dynamic> layout;
-  const MetaDeckManagement({super.key, required this.layout});
+  final String pathId;
+  const MetaDeckManagement({super.key, required this.layout, required this.pathId});
 
   @override
   _MetaDeckManagementState createState() =>
@@ -27,6 +28,7 @@ class _MetaDeckManagementState extends ConsumerState<MetaDeckManagement> {
           items: ref
               .watch(campaignSavedStatusProvider)
               .savedState[widget.layout["ref"]],
+          pathId: widget.pathId,
         ));
   }
 }

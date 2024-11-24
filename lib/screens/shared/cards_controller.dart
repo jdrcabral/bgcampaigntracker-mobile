@@ -10,13 +10,16 @@ class CardsController extends ConsumerStatefulWidget {
   final List<dynamic> options;
   final List<dynamic> items;
   final Map<String, dynamic>? component;
+  final String pathId;
+
   const CardsController(
       {super.key,
       required this.title,
       required this.stateKey,
       required this.options,
       required this.items,
-      this.component });
+      required this.pathId,
+      this.component});
 
   @override
   _CardsControllerState createState() => _CardsControllerState();
@@ -25,11 +28,15 @@ class CardsController extends ConsumerStatefulWidget {
 class _CardsControllerState extends ConsumerState<CardsController>
     with SingleTickerProviderStateMixin {
   String selectedItem = "";
+
   List<String> _castListToString(List<dynamic> list) {
-    return [
-      for (var element in list)
-        if (element is String) element
-    ];
+    return list.map((e) {
+      if (e is Map) {
+        if (e.containsKey("name")) return e["name"].toString();
+        if (e.containsKey("label")) return e["label"].toString();
+      }
+      return e.toString();
+    }).toList();
   }
 
   @override
@@ -43,10 +50,13 @@ class _CardsControllerState extends ConsumerState<CardsController>
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: ListView.builder(
-          itemCount: ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey].length,
+          itemCount: ref
+              .watch(campaignSavedStatusProvider)
+              .savedState[widget.stateKey]
+              .length,
           itemBuilder: (context, index) {
             if (widget.component != null) {
-              return MetaHandler(layout: widget.component!);
+              return MetaHandler(layout: widget.component!, pathId: "${widget.pathId}.$index",);
             }
             return Card(
               surfaceTintColor: Colors.grey[350],
@@ -61,7 +71,9 @@ class _CardsControllerState extends ConsumerState<CardsController>
                         padding: const EdgeInsets.only(
                             left: 10.0, right: 10.0, top: 10.0),
                         child: Text(
-                          ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey][index],
+                          ref
+                              .watch(campaignSavedStatusProvider)
+                              .savedState[widget.stateKey][index],
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
@@ -73,10 +85,15 @@ class _CardsControllerState extends ConsumerState<CardsController>
                         icon: const Icon(Icons.delete),
                         color: Colors.red,
                         onPressed: () {
-                          ref.read(campaignSavedStatusProvider.notifier).update((state) {
+                          ref
+                              .read(campaignSavedStatusProvider.notifier)
+                              .update((state) {
                             CampaignSavedStatus clonedState = state.clone();
-                            if (clonedState.savedState[widget.stateKey] is List) {
-                              (clonedState.savedState[widget.stateKey] as List<dynamic>).removeAt(index);
+                            if (clonedState.savedState[widget.stateKey]
+                                is List) {
+                              (clonedState.savedState[widget.stateKey]
+                                      as List<dynamic>)
+                                  .removeAt(index);
                             }
                             return clonedState;
                           });
@@ -141,10 +158,19 @@ class _CardsControllerState extends ConsumerState<CardsController>
               ),
               child: const Text('Add'),
               onPressed: () {
+                dynamic retrievedItem = widget.options.firstWhere((element) {
+                  if (element is Map) {
+                    if (element.containsKey("name")) return element["name"].toString() == selectedItem;
+                    if (element.containsKey("label")) return element["label"].toString() == selectedItem;
+                  }
+                  return element.toString() == selectedItem;
+                });
+                ref.read(campaignSavedStatusProvider).dataLayout["character"];
                 ref.read(campaignSavedStatusProvider.notifier).update((state) {
                   CampaignSavedStatus clonedState = state.clone();
                   if (clonedState.savedState[widget.stateKey] is List) {
-                    (clonedState.savedState[widget.stateKey] as List<dynamic>).add(selectedItem);
+                    (clonedState.savedState[widget.stateKey] as List<dynamic>)
+                        .add(selectedItem);
                   }
                   return clonedState;
                 });

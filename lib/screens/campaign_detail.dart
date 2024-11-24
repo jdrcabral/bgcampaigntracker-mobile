@@ -55,13 +55,42 @@ class _CampaignDetailState extends ConsumerState<CampaignDetail> {
             ref
                 .read(campaignSavedStatusProvider)
                 .loadCampaignState({
-              "threatLevel": "5",
+              "threatLevel": "0",
               "notes": "",
               "characters": [],
               "reserve": [],
               "itemA": [],
             });
-            return MetaHandler(layout: snapshot.data![0]);
+            ref
+                .read(campaignSavedStatusProvider)
+                .loadDataLayout({
+              "item": {
+                "name": {"type": "ref"},
+                "quantity": {"type": "text", "default": "0"},
+              },
+              "character": {
+                "name": {"type": "ref"},
+                "health": {"type": "text", "default": "5"},
+                "kerosene": {"type": "text", "default": "0"},
+                "dead": {"type": "boolean", "default": false},
+                "blocked": {"type": "boolean", "default": false},
+                "advanced": {"type": "boolean", "default": false},
+                "inventory": {"type": "list"},
+              },
+              "tensionCard": {
+                "name": {"type": "ref"},
+                "value": {"type": "ref"},
+                "quantity": {"type": "text", "default": "0"},
+              },
+              "encounterCard": {
+                "name": {"type": "ref"},
+                "symbol": {"type": "ref"},
+                "effect": {"type": "ref"},
+                "quantity": {"type": "text", "default": "0"},
+              }
+            });
+
+            return MetaHandler(layout: snapshot.data![0], pathId: "root",);
           }
           return const Center(
             child: CircularProgressIndicator(),

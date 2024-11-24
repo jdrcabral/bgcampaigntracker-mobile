@@ -6,15 +6,16 @@ import 'package:campaigntrackerflutter/components/meta/meta_horizontal_container
 import 'package:campaigntrackerflutter/components/meta/meta_increase_decrease.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_list.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_tab.dart';
+import 'package:campaigntrackerflutter/components/meta/meta_text.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_text_input.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_vertical_container.dart';
 import 'package:flutter/material.dart';
 
 class MetaHandler extends StatefulWidget {
   final Map<String, dynamic> layout;
-  final Map<String, dynamic>? options;
+  final String pathId;
 
-  const MetaHandler({super.key, required this.layout, this.options });
+  const MetaHandler({super.key, required this.layout, this.pathId = "" });
 
   @override
   _MetaHandlerState createState() => _MetaHandlerState();
@@ -27,7 +28,7 @@ class _MetaHandlerState extends State<MetaHandler> {
       case "tab":
         return MetaTab(tabLayout: widget.layout);
       case "card":
-        return MetaCard(layout: widget.layout);
+        return MetaCard(layout: widget.layout, pathId: "${widget.pathId}.card",);
       case "checkbox":
         return MetaCheckbox();
       case "increaseDecrease":
@@ -35,22 +36,19 @@ class _MetaHandlerState extends State<MetaHandler> {
           stateKey: widget.layout["ref"],
         );
       case "text":
-        return Text(
-          widget.layout["label"],
-          style: TextStyle(fontSize: widget.layout["size"] ?? 20),
-        );
+        return MetaText(layout: widget.layout, pathId: "${widget.pathId}.text",);
       case "input":
         return MetaTextInput(layout: widget.layout);
       case "horizontalContainer":
-        return MetaHorizontalContainer(layout: widget.layout);
+        return MetaHorizontalContainer(layout: widget.layout, pathId: "${widget.pathId}.verticalContainer");
       case "verticalContainer":
-        return MetaVerticalContainer(layout: widget.layout);
+        return MetaVerticalContainer(layout: widget.layout, pathId: "${widget.pathId}.verticalContainer",);
       case "deckManagement":
-        return MetaDeckManagement(layout: widget.layout);
+        return MetaDeckManagement(layout: widget.layout, pathId: "${widget.pathId}.deckManagement",);
       case "list":
-        return MetaList(layout: widget.layout);
+        return MetaList(layout: widget.layout, pathId: "${widget.pathId}.list",);
       case "customListManagement":
-        return MetaCustomListManagement(layout: widget.layout);
+        return MetaCustomListManagement(layout: widget.layout, pathId: "${widget.pathId}.customListManagement",);
       default:
         return Container();
     }
