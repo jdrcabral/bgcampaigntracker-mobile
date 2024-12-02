@@ -5,7 +5,6 @@ import 'package:campaigntrackerflutter/data/database_service.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:campaigntrackerflutter/models/components.dart';
-import 'package:campaigntrackerflutter/screens/board_games/resident_evil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -61,7 +60,7 @@ class _CampaignDetailState extends ConsumerState<CampaignDetail> {
               "reserve": [],
               "itemA": [],
             });
-            return MetaHandler(layout: snapshot.data![0]);
+            return MetaHandler(layout: snapshot.data![0], pathId: "root");
           }
           return const Center(
             child: CircularProgressIndicator(),

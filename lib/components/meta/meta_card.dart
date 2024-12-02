@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 
 class MetaCard extends StatelessWidget {
   final Map<String, dynamic> layout;
+  final String pathId;
   const MetaCard(
-      {Key? key,
-      required this.layout,})
-      : super(key: key);
+      {super.key,
+      required this.layout,
+      required this.pathId,});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class MetaCard extends StatelessWidget {
           debugPrint('Card tapped.');
           // Navigator.pushNamed(context, '/campaigns');
         },
-        child: MetaHandler(layout: layout["child"]),
+        child: MetaHandler(layout: layout["child"], pathId: pathId,),
       ),
     );
   }

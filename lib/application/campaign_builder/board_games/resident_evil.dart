@@ -56,7 +56,7 @@ class ResidentEvilBuilder extends BaseCampaingBuilder {
     if (!boardGame.components!.containsKey("characters")) return;
     var component = boardGame.components!["characters"];
 
-    (component as List<dynamic>).forEach((element) {
+    for (var element in (component as List<dynamic>)) {
       (savedState["reserve"] as List<dynamic>).add({
         "name": element,
         "unlocked": false,
@@ -64,7 +64,7 @@ class ResidentEvilBuilder extends BaseCampaingBuilder {
         "advanced": false,
         "health": 5,
       });
-    });
+    }
   }
 
   void _buildScenarios(BoardGame boardGames) {

@@ -1,12 +1,8 @@
-import 'package:campaigntrackerflutter/data/models/campaign.dart';
-import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MetaTextInput extends StatefulWidget {
   final Map<String, dynamic> layout;
-  const MetaTextInput({Key? key, required this.layout})
-      : super(key: key);
+  const MetaTextInput({super.key, required this.layout});
 
   @override
   _MetaTextInputState createState() =>
@@ -18,16 +14,16 @@ class _MetaTextInputState extends State<MetaTextInput> {
   Widget build(BuildContext context) {
     switch (widget.layout["inputType"]) {
       case "multiline":
-        return TextField(
+        return const TextField(
           keyboardType: TextInputType.multiline,
           maxLines: null,
         );
       case "number":
-        return TextField(
+        return const TextField(
           keyboardType: TextInputType.number
         );
       default:
-        return TextField();
+        return const TextField();
     }
   }
 }

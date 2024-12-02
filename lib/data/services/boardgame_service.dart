@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'package:http/http.dart' as http;
 import 'package:campaigntrackerflutter/data/database_service.dart';
-import 'package:campaigntrackerflutter/data/models/campaign.dart';
 
 class BoardgameService {
 
@@ -21,7 +20,7 @@ class BoardgameService {
 
   Future<List<BoardGame>> retrieveExpansions(parentId) async {
     if (kIsWeb) {
-      var response = await http.get(Uri.parse('http://127.0.0.1:8000/boardgames/?is_expansion=true&parent=${parentId}'));
+      var response = await http.get(Uri.parse('http://127.0.0.1:8000/boardgames/?is_expansion=true&parent=$parentId'));
       List<dynamic> jsonData = jsonDecode(response.body);
       return jsonData.map((item) => BoardGame.fromMap(item)).toList();
     }
@@ -29,7 +28,7 @@ class BoardgameService {
   }
 
   Future<BoardGame> retrieveBoardGame(int boardGameId) async {
-      var response = await http.get(Uri.parse('http://127.0.0.1:8000/boardgames/${boardGameId}'));
+      var response = await http.get(Uri.parse('http://127.0.0.1:8000/boardgames/$boardGameId'));
       Map<String, dynamic> jsonData = jsonDecode(response.body);
       return BoardGame.fromMap(jsonData);
   }

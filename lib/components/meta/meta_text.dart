@@ -1,14 +1,10 @@
-import 'package:campaigntrackerflutter/data/models/campaign.dart';
-import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider/provider.dart';
 
 class MetaText extends ConsumerStatefulWidget {
   final Map<String, dynamic> layout;
   final Map<String, dynamic>? options;
-  const MetaText({Key? key, required this.layout, this.options})
-      : super(key: key);
+  const MetaText({super.key, required this.layout, this.options});
 
   @override
   _MetaTextState createState() =>

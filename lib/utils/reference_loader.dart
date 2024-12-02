@@ -19,7 +19,7 @@ class ReferenceLoader {
       Map<String, dynamic> clonedOptions = Map.from(options);
       List<int> indexList = clonedOptions['index'] as List<int>;
       int index = indexList.removeAt(0);
-      if (index > (state as List).length || index < 0) {
+      if (index > (state).length || index < 0) {
         return null;
       }
       ReferenceLoader.retrieveReferencedState(keyParts.join('.'), state[index], clonedOptions);
@@ -38,7 +38,7 @@ class ReferenceLoader {
     }
     String key = keyParts.removeAt(0);
     if (key == "index" && state is List) {
-      return (state as List).map((element) {
+      return (state).map((element) {
         return ReferenceLoader.altRetrieveReferencedState(keyParts.join('.'), element);
       });
     }

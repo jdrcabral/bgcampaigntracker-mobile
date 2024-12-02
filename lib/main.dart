@@ -1,11 +1,9 @@
-import 'dart:convert';
 
 import 'package:campaigntrackerflutter/components/campaign_card.dart';
 import 'package:campaigntrackerflutter/data/database_service.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
 import 'package:campaigntrackerflutter/data/services/campaign_service.dart';
 import 'package:campaigntrackerflutter/screens/campaign_creation.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
