@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:campaigntrackerflutter/components/meta/meta_handler.dart';
-import 'package:campaigntrackerflutter/data/database_service.dart';
-import 'package:campaigntrackerflutter/data/models/campaign.dart';
+// import 'package:campaigntrackerflutter/data/database_service.dart';
+// import 'package:campaigntrackerflutter/data/models/campaign.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:campaigntrackerflutter/models/components.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +22,12 @@ class CampaignDetail extends ConsumerStatefulWidget {
 }
 
 class _CampaignDetailState extends ConsumerState<CampaignDetail> {
-  final DatabaseService _databaseService = DatabaseService();
+  // final DatabaseService _databaseService = DatabaseService();
 
 
-  Future<Campaign> _fetchCampaign() async {
-    return _databaseService.retrieveCampaign(widget.id);
-  }
+  // Future<Campaign> _fetchCampaign() async {
+  //   return _databaseService.retrieveCampaign(widget.id);
+  // }
 
   Future<List<Map<String, dynamic>>> _loadLayout() async {
     String jsonString = await rootBundle
@@ -38,8 +38,7 @@ class _CampaignDetailState extends ConsumerState<CampaignDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
+    return FutureBuilder(
         future: _loadLayout(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -66,7 +65,6 @@ class _CampaignDetailState extends ConsumerState<CampaignDetail> {
             child: CircularProgressIndicator(),
           );
         },
-      ),
     );
     // return Container(
     //   child: FutureBuilder(

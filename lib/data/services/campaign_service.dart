@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import 'package:campaigntrackerflutter/data/database_service.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
+import 'package:flutter/material.dart';
 
 class CampaignService {
 
@@ -32,7 +33,7 @@ class CampaignService {
         }),
       );
       if (response.statusCode != 201) {
-        print(response.body);
+        debugPrint(response.body);
       }
       return;
     }

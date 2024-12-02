@@ -54,8 +54,7 @@ class _CardsControllerState extends ConsumerState<CardsController>
               surfaceTintColor: Colors.grey[350],
               shadowColor: Colors.black,
               borderOnForeground: true,
-              child: Container(
-                child: Column(children: [
+              child: Column(children: [
                   Row(children: [
                     Expanded(
                       flex: 2,
@@ -98,7 +97,6 @@ class _CardsControllerState extends ConsumerState<CardsController>
                     ),
                   ),
                 ]),
-              ),
             );
           },
         ),

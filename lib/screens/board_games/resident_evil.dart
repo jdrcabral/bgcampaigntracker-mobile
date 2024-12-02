@@ -77,8 +77,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                 ]),
               )),
           Center(
-              child: Container(
-                child: Flex(direction: Axis.vertical, children: [
+              child: Flex(direction: Axis.vertical, children: [
                   const Text('Active Characters',
                       style: TextStyle(color: Colors.black)),
                   Expanded(
@@ -144,7 +143,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         )),
                   ),
                 ]),
-              )),
+              ),
           Center(
               child: Column(
                 children: [

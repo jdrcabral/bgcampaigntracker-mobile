@@ -24,21 +24,23 @@ void main() {
     const Map<String, dynamic> layout = {
       'ref': 'characters.index.name',
     };    
-    final provider = ProviderContainer();
-    provider.read(campaignSavedStatusProvider)
-                .loadCampaignState({
-                  'characters': [
-                    {
-                      'name': 'Ignore',
-                    },
-                    {
-                      'name': 'Test',
-                    },
-                  ],
-                });
+    CampaignSavedStatus campaignSavedStatus = CampaignSavedStatus(
+      savedState: {
+        'characters': [
+          {
+            'name': 'Ignore',
+          },
+          {
+            'name': 'Test',
+          },
+        ],
+      }
+    );
     await tester.pumpWidget(
       ProviderScope(
-        parent: provider,
+        overrides: [
+          campaignSavedStatusProvider.overrideWith((ref) => campaignSavedStatus),
+        ],
         child: const MaterialApp(
           home: Scaffold(
             body: MetaText(layout: layout, pathId: "root.1.text",))

@@ -157,6 +157,7 @@ class _CampaignCreationState extends ConsumerState<CampaignCreation> {
                               "savedState": createdCampaign,
                             };
                             await _createCampaign(campaign);
+                            // ignore: use_build_context_synchronously
                             Navigator.pop(context);
                             // Navigator.push(
                             //     context,
