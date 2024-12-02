@@ -10,12 +10,14 @@ class CardsController extends ConsumerStatefulWidget {
   final List<dynamic> options;
   final List<dynamic> items;
   final Map<String, dynamic>? component;
+  final String pathId;
   const CardsController(
       {super.key,
       required this.title,
       required this.stateKey,
       required this.options,
       required this.items,
+      required this.pathId,
       this.component });
 
   @override
@@ -46,7 +48,7 @@ class _CardsControllerState extends ConsumerState<CardsController>
           itemCount: ref.watch(campaignSavedStatusProvider).savedState[widget.stateKey].length,
           itemBuilder: (context, index) {
             if (widget.component != null) {
-              return MetaHandler(layout: widget.component!);
+              return MetaHandler(layout: widget.component!, pathId: "${widget.pathId}.$index",);
             }
             return Card(
               surfaceTintColor: Colors.grey[350],
@@ -122,9 +124,9 @@ class _CardsControllerState extends ConsumerState<CardsController>
               showSearchBox: true,
               showSelectedItems: true,
             ),
-            items: _castListToString(widget.options),
-            dropdownDecoratorProps: const DropDownDecoratorProps(
-              dropdownSearchDecoration: InputDecoration(
+            items: (f, cs) => _castListToString(widget.options),
+            decoratorProps: const DropDownDecoratorProps(
+              decoration: InputDecoration(
                 labelText: "Card Selector",
                 hintText: "select card",
               ),

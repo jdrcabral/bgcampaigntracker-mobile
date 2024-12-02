@@ -10,8 +10,9 @@ final Map<String, IconData> iconMap = {
 
 class MetaTab extends StatefulWidget {
   final Map<String, dynamic> tabLayout;
+  final String pathId;
 
-  const MetaTab({Key? key, required this.tabLayout}) : super(key: key);
+  const MetaTab({super.key, required this.tabLayout, required this.pathId});
 
   @override
   _MetaTabState createState() => _MetaTabState();
@@ -47,7 +48,7 @@ class _MetaTabState extends State<MetaTab>
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Game Detail'),
+        title: const Text('Game Detail'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         bottom: TabBar(
           controller: _tabController,
@@ -57,7 +58,7 @@ class _MetaTabState extends State<MetaTab>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: children.map((tab) => MetaHandler(layout: tab['content'])).toList(),
+        children: children.map((tab) => MetaHandler(layout: tab['content'], pathId: widget.pathId,)).toList(),
       ),
     );
   }

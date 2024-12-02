@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MetaCheckbox extends StatefulWidget {
 
-  const MetaCheckbox({Key? key}) : super(key: key);
+  const MetaCheckbox({super.key});
 
   @override
   _MetaCheckboxState createState() => _MetaCheckboxState();

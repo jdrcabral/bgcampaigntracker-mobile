@@ -1,5 +1,4 @@
 import 'package:campaigntrackerflutter/components/card_navigator.dart';
-import 'package:campaigntrackerflutter/components/meta/meta_handler.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:campaigntrackerflutter/models/components.dart';
 import 'package:campaigntrackerflutter/screens/shared/cards_controller.dart';
@@ -8,7 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MetaCustomListManagement extends ConsumerStatefulWidget {
   final Map<String, dynamic> layout;
-  const MetaCustomListManagement({super.key, required this.layout});
+  final String pathId;
+  const MetaCustomListManagement({super.key, required this.layout, required this.pathId });
 
   @override
   _MetaCustomListManagement createState() =>
@@ -29,6 +29,7 @@ class _MetaCustomListManagement extends ConsumerState<MetaCustomListManagement> 
               .watch(campaignSavedStatusProvider)
               .savedState[widget.layout["ref"]],
           component: widget.layout["component"],
+          pathId: widget.pathId,
         ));
   }
 }

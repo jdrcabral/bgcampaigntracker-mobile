@@ -1,5 +1,4 @@
 import 'package:campaigntrackerflutter/components/card_navigator.dart';
-import 'package:campaigntrackerflutter/components/expansion_panel.dart';
 import 'package:campaigntrackerflutter/components/increase_decrease.dart';
 import 'package:campaigntrackerflutter/data/models/campaign.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
@@ -80,17 +79,17 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
           Center(
               child: Container(
                 child: Flex(direction: Axis.vertical, children: [
-                  Text('Active Characters',
+                  const Text('Active Characters',
                       style: TextStyle(color: Colors.black)),
                   Expanded(
                       flex: 1,
                       child: ListView.builder(
-                          itemBuilder: (context, index) => Card(
+                          itemBuilder: (context, index) => const Card(
                             child: Row(
                               children: [],
                             ),
                           ))),
-                  Text('Reserve Characters', style: TextStyle(color: Colors.black)),
+                  const Text('Reserve Characters', style: TextStyle(color: Colors.black)),
                   Expanded(
                     flex: 2,
                     child: ListView.builder(
@@ -105,12 +104,12 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                               child: Column(children: [
                                 Row(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: 200.0,
                                       child: Text(
                                           "${ref.watch(campaignSavedStatusProvider).savedState['reserve'][index]['name']}"),
                                     ),
-                                    ElevatedButton(onPressed: () {}, child: Text("Add to active"), style: Theme.of(context).elevatedButtonTheme.style,
+                                    ElevatedButton(onPressed: () {}, style: Theme.of(context).elevatedButtonTheme.style, child: const Text("Add to active"),
                                     ),
                                   ],
                                 ),
@@ -125,14 +124,14 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                                     //   ),
                                     // ),
                                     Checkbox(value: false, onChanged: (bool? value) {}),
-                                    Text('Locked'),
+                                    const Text('Locked'),
                                     Checkbox(value: false, onChanged: (bool? value) {}),
-                                    Text('Dead'),
+                                    const Text('Dead'),
                                     Checkbox(value: false, onChanged: (bool? value) {}),
-                                    Text('Advanced'),
+                                    const Text('Advanced'),
                                   ],
                                 ),
-                                Row(
+                                const Row(
                                   children: [
                                     Text("Health"),
                                     IncreaseDecreaseTextField(
@@ -159,6 +158,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["itemBox"],
+                        pathId: "",
                       )),
                   CardNavigator(
                     cardTitle: 'Item A',
@@ -169,6 +169,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                       items: ref
                           .watch(campaignSavedStatusProvider)
                           .savedState["itemA"],
+                      pathId: "",
                     ),
                   ),
                   CardNavigator(
@@ -183,6 +184,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["tensionDeck"],
+                        pathId: "",
                       )),
                   CardNavigator(
                       cardTitle: 'Narrative Deck',
@@ -194,6 +196,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["playedNarratives"],
+                        pathId: "",
                       )),
                   CardNavigator(
                       cardTitle: 'Mission Deck',
@@ -205,6 +208,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["playedMissions"],
+                        pathId: "",
                       )),
                   CardNavigator(
                       cardTitle: 'Encounter Deck',
@@ -216,6 +220,7 @@ class _ResidentEvilCampaignState extends ConsumerState<ResidentEvilCampaign>
                         items: ref
                             .watch(campaignSavedStatusProvider)
                             .savedState["encounterDeck"],
+                        pathId: "",
                       )),
                 ],
               )),
