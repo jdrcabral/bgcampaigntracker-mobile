@@ -1,47 +1,33 @@
 // Class to handle reference loading with the components data
-class ReferenceLoader {
+import 'package:campaigntrackerflutter/utils/path_handler.dart';
 
-  // referenceKey will be dot notation ie: characters.index.name
-  static dynamic retrieveReferencedState(String referenceKey, dynamic state, Map<String, dynamic> options) {
-    List<String> keyParts = referenceKey.split(".");
-    if (keyParts.length == 1) {
-      if (state is Map) {
-        return state[keyParts.first];
-      }
+class ReferenceLoader {
+  static dynamic retrieveReference(dynamic state, List<String> reference) {
+    if (reference.isEmpty) {
       return state;
     }
-    String key = keyParts.removeAt(0);
-    if (key == "index" && state is List) {
-      if (!options.containsKey('index')) {
-        return null;
+    String currentReference = reference.removeAt(0);
+    int? parsedNumber = int.tryParse(currentReference);
+    if (parsedNumber != null) {
+      dynamic result = (state as List<dynamic>).elementAtOrNull(parsedNumber);
+      if (result == null) {
+        return state;
       }
-      // Index data are stored as a list of ints
-      Map<String, dynamic> clonedOptions = Map.from(options);
-      List<int> indexList = clonedOptions['index'] as List<int>;
-      int index = indexList.removeAt(0);
-      if (index > (state).length || index < 0) {
-        return null;
-      }
-      ReferenceLoader.retrieveReferencedState(keyParts.join('.'), state[index], clonedOptions);
+      return ReferenceLoader.retrieveReference(state[parsedNumber], reference);
     }
-    return ReferenceLoader.retrieveReferencedState(keyParts.join('.'), state[key], options);
+    if (state.containsKey(currentReference)) {
+      return ReferenceLoader.retrieveReference(state[currentReference], reference);
+    }
+    return state;
   }
 
-    // referenceKey will be dot notation ie: characters.index.name
-  static dynamic altRetrieveReferencedState(String referenceKey, dynamic state) {
-    List<String> keyParts = referenceKey.split(".");
-    if (keyParts.length == 1) {
-      if (state is Map) {
-        return state[keyParts.first];
-      }
-      return state;
+  static String replaceRefIndex(String ref, String pathId) {
+    List<int> indexes = PathHandler.extractIndexes(pathId);
+    String result = ref;
+    
+    for (final index in indexes) {
+      result = result.replaceFirst("index", index.toString());
     }
-    String key = keyParts.removeAt(0);
-    if (key == "index" && state is List) {
-      return (state).map((element) {
-        return ReferenceLoader.altRetrieveReferencedState(keyParts.join('.'), element);
-      });
-    }
-    return ReferenceLoader.altRetrieveReferencedState(keyParts.join('.'), state[key]);
+    return result;
   }
 }

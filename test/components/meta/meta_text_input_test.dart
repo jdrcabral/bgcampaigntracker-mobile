@@ -9,9 +9,9 @@ void main() {
     };
     // Build our app and trigger a frame.
     await tester.pumpWidget(
-        MaterialApp(
-            home: Scaffold(
-                body: const MetaTextInput(layout: layout))
+        const MaterialApp(
+          home: Scaffold(
+            body: MetaTextInput(layout: layout))
         )
     );
 
@@ -22,5 +22,25 @@ void main() {
 
     await tester.enterText(textInput, 'Line 1\nLine 2\nLine 3');
     expect(find.text('Line 1\nLine 2\nLine 3'), findsOneWidget);
+    expect(tester.widget<TextField>(textInput).keyboardType, TextInputType.multiline);
+  });
+
+  testWidgets('Meta text input with number', (WidgetTester tester) async {
+    const Map<String, dynamic> layout = {
+      'inputType': 'number',
+    };
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: MetaTextInput(layout: layout))
+        )
+    );
+
+    final textInput = find.byType(TextField);
+
+    await tester.enterText(textInput, '123');
+    expect(find.text('123'), findsOneWidget);
+    expect(tester.widget<TextField>(textInput).keyboardType, TextInputType.number);
   });
 }

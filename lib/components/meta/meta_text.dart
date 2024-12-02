@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:campaigntrackerflutter/utils/reference_loader.dart';
 class MetaText extends ConsumerStatefulWidget {
   final Map<String, dynamic> layout;
-  final Map<String, dynamic>? options;
-  const MetaText({super.key, required this.layout, this.options});
+  final String pathId;
+  const MetaText({super.key, required this.layout, required this.pathId});
 
   @override
   _MetaTextState createState() =>
@@ -16,9 +17,11 @@ class _MetaTextState extends ConsumerState<MetaText> {
   Widget build(BuildContext context) {
     TextStyle textStyle = TextStyle(fontSize: widget.layout["size"] ?? 20);
     if (widget.layout.containsKey("ref")) {
-      // TODO create a ref data fetcher
+      String replacedRef = ReferenceLoader.replaceRefIndex(widget.layout["ref"], widget.pathId);
+      dynamic state = ref
+                    .watch(campaignSavedStatusProvider).savedState;
       return Text(
-        widget.layout["ref"],
+        ReferenceLoader.retrieveReference(state, replacedRef.split('.')),
         style: textStyle,
       );
     }

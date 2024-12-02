@@ -1,5 +1,5 @@
 import 'package:campaigntrackerflutter/utils/path_handler.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('Should not return index if path does not contain it', () {
