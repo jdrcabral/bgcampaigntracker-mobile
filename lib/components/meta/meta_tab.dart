@@ -9,10 +9,10 @@ final Map<String, IconData> iconMap = {
 };
 
 class MetaTab extends StatefulWidget {
-  final Map<String, dynamic> tabLayout;
+  final Map<String, dynamic> layout;
   final String pathId;
 
-  const MetaTab({super.key, required this.tabLayout, required this.pathId});
+  const MetaTab({super.key, required this.layout, required this.pathId});
 
   @override
   _MetaTabState createState() => _MetaTabState();
@@ -25,7 +25,7 @@ class _MetaTabState extends State<MetaTab>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: widget.tabLayout["children"].length, vsync: this);
+    _tabController = TabController(length: widget.layout["children"].length, vsync: this);
   }
 
   @override
@@ -36,7 +36,7 @@ class _MetaTabState extends State<MetaTab>
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> children = widget.tabLayout["children"];
+    List<dynamic> children = widget.layout["children"];
     List<Widget> tabs = children
         .map((tab) {
       if (tab.containsKey('icon')) {

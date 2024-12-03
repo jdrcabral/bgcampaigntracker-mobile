@@ -11,7 +11,6 @@ class MetaVerticalContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: (layout["children"] as List<dynamic>).map((e) => MetaHandler(layout: e, pathId: pathId,)).toList(),
     );

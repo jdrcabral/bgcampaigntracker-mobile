@@ -7,11 +7,11 @@ class MetaHorizontalContainer extends StatelessWidget {
   const MetaHorizontalContainer(
       {super.key,
       required this.layout,
-      required this.pathId});
+      required this.pathId,});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: (layout["children"] as List<dynamic>).map((e) => MetaHandler(layout: e, pathId: pathId,)).toList(),
     );
   }

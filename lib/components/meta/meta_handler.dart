@@ -27,7 +27,7 @@ class _MetaHandlerState extends State<MetaHandler> {
   Widget build(BuildContext context) {
     switch (widget.layout["type"]) {
       case "tab":
-        return MetaTab(tabLayout: widget.layout, pathId: "${widget.pathId}.tab",);
+        return MetaTab(layout: widget.layout, pathId: "${widget.pathId}.tab",);
       case "card":
         return MetaCard(layout: widget.layout, pathId: "${widget.pathId}.card",);
       case "checkbox":
