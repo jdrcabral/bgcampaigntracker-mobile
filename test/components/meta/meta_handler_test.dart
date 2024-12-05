@@ -1,7 +1,9 @@
 import 'package:campaigntrackerflutter/components/meta/meta_handler.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_tab.dart';
 import 'package:campaigntrackerflutter/components/meta/meta_text_input.dart';
+import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -36,14 +38,24 @@ void main() {
 
     testWidgets('Meta handle with layout of input returns MetaTextInput', (WidgetTester tester) async {
     Map<String, dynamic> layout = {
-        "type": "input",
-        "inputType": "multiline",
+        'type': 'input',
+        'inputType': 'multiline',
+        'ref': 'notes'
     };
-
+    CampaignSavedStatus campaignSavedStatus = CampaignSavedStatus(
+      savedState: {
+        'notes': 'Already have a note',
+      }
+    );
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: MetaHandler(layout: layout, pathId: 'root',))
+      ProviderScope(
+        overrides: [
+          campaignSavedStatusProvider.overrideWith((ref) => campaignSavedStatus),
+        ],
+        child: MaterialApp(
+          home: Scaffold(
+            body: MetaHandler(layout: layout, pathId: 'root',))
+        )
       )
     );
 

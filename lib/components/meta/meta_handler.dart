@@ -39,7 +39,7 @@ class _MetaHandlerState extends State<MetaHandler> {
       case "text":
         return MetaText(layout: widget.layout, pathId: "${widget.pathId}.text");
       case "input":
-        return MetaTextInput(layout: widget.layout);
+        return MetaTextInput(layout: widget.layout, pathId: "${widget.pathId}.textInput",);
       case "horizontalContainer":
         return MetaHorizontalContainer(layout: widget.layout, pathId: "${widget.pathId}.horizontalContainer",);
       case "verticalContainer":
