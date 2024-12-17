@@ -31,10 +31,11 @@ class _MetaHandlerState extends State<MetaHandler> {
       case "card":
         return MetaCard(layout: widget.layout, pathId: "${widget.pathId}.card",);
       case "checkbox":
-        return const MetaCheckbox();
+        return MetaCheckbox(layout: widget.layout, pathId: "${widget.pathId}.checkbox",);
       case "increaseDecrease":
         return MetaIncreaseDecrease(
-          stateKey: widget.layout["ref"],
+          layout: widget.layout,
+          pathId: "${widget.pathId}.increaseDecrease",
         );
       case "text":
         return MetaText(layout: widget.layout, pathId: "${widget.pathId}.text");

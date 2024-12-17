@@ -41,6 +41,20 @@ class CampaignService {
         'board_game_id': campaign['board_game_id'],
         'name': campaign['name'],
         'saved_state': jsonEncode(campaign['savedState']),
-  });
+    });
+  }
+
+  Future<Campaign> retrieve(int id) async {
+    if (kIsWeb) {
+      var response = await http.get(
+        Uri.parse('http://127.0.0.1:8000/campaigns/$id'),
+      );
+      if (response.statusCode != 201) {
+        debugPrint(response.body);
+      }
+      Map<String, dynamic> jsonData = jsonDecode(response.body);
+      return Campaign.fromMap(jsonData);
+    }
+    return _databaseService.retrieveCampaign(id);
   }
 }

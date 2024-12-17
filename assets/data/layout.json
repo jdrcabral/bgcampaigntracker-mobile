@@ -56,7 +56,44 @@
                 "children": [
                   {
                     "type": "text",
-                    "ref": "characters.index.name"
+                    "ref": "reserve.index.name"
+                  },
+                  {
+                    "type": "horizontalContainer",
+                    "children": [
+                      {
+                        "type": "text",
+                        "label": "Unlocked"
+                      },
+                      {
+                        "type": "checkbox",
+                        "ref": "reserve.index.unlocked"
+                      },
+                      {
+                        "type": "text",
+                        "label": "Dead"
+                      },
+                      {
+                        "type": "checkbox",
+                        "ref": "reserve.index.dead"
+                      },
+                      {
+                        "type": "text",
+                        "label": "Advanced"
+                      },
+                      {
+                        "type": "checkbox",
+                        "ref": "reserve.index.advanced"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "label": "Health"
+                  },
+                  {
+                    "type": "increaseDecrease",
+                    "ref": "reserve.index.health"
                   }
                 ]
               }

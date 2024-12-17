@@ -15,7 +15,7 @@ class ReferenceLoader {
       }
       return ReferenceLoader.retrieveReference(state[parsedNumber], reference);
     }
-    if (state.containsKey(currentReference)) {
+    if (state is Map && state.containsKey(currentReference)) {
       return ReferenceLoader.retrieveReference(state[currentReference], reference);
     }
     return state;

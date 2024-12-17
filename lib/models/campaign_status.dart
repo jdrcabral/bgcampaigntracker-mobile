@@ -4,17 +4,23 @@ final campaignSavedStatusProvider = StateProvider<CampaignSavedStatus>((ref) => 
 
 class CampaignSavedStatus {
   Map<String, dynamic> savedState = {};
+  Map<String, dynamic> components = {};
 
   loadCampaignState(Map<String, dynamic> savedState) {
     this.savedState = savedState;
   }
 
-  CampaignSavedStatus({ Map<String, dynamic>? savedState }) {
+  loadComponents(Map<String, dynamic> components) {
+    this.components = components;
+  }
+
+  CampaignSavedStatus({ Map<String, dynamic>? savedState, Map<String, dynamic>? components }) {
     this.savedState = savedState ?? {};
+    this.components = components ?? {};
   }
 
   CampaignSavedStatus clone() {
-    return CampaignSavedStatus(savedState: {...savedState});
+    return CampaignSavedStatus(savedState: {...savedState}, components: {...components});
   }
 
   updateNestedValue(String path, dynamic newValue) {

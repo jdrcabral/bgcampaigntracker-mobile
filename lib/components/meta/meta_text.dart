@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:campaigntrackerflutter/models/campaign_status.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:campaigntrackerflutter/utils/reference_loader.dart';
+
 class MetaText extends ConsumerStatefulWidget {
   final Map<String, dynamic> layout;
   final String pathId;
@@ -20,8 +21,9 @@ class _MetaTextState extends ConsumerState<MetaText> {
       String replacedRef = ReferenceLoader.replaceRefIndex(widget.layout["ref"], widget.pathId);
       dynamic state = ref
                     .watch(campaignSavedStatusProvider).savedState;
+      dynamic retrievedReference = ReferenceLoader.retrieveReference(state, replacedRef.split('.'));
       return Text(
-        ReferenceLoader.retrieveReference(state, replacedRef.split('.')),
+        retrievedReference,
         style: textStyle,
       );
     }

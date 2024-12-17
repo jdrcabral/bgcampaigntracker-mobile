@@ -18,7 +18,7 @@ void main() {
         ],
         child: const MaterialApp(
           home: Scaffold(
-            body: MetaIncreaseDecrease(stateKey: 'quantity',))
+            body: MetaIncreaseDecrease(layout: {'ref': 'quantity'}, pathId: "root",))
         )
       )
     );
@@ -57,7 +57,8 @@ void main() {
         ],
         child: const MaterialApp(
           home: Scaffold(
-            body: MetaIncreaseDecrease(stateKey: 'quantity',))
+            body: MetaIncreaseDecrease(layout: {'ref': 'quantity'}, pathId: "root",)
+          )
         )
       )
     );
