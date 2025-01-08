@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final campaignSavedStatusProvider = StateProvider<CampaignSavedStatus>((ref) => CampaignSavedStatus());
 
 class CampaignSavedStatus {
+  int identifier = 0;
   Map<String, dynamic> savedState = {};
   Map<String, dynamic> components = {};
 
@@ -14,13 +15,18 @@ class CampaignSavedStatus {
     this.components = components;
   }
 
-  CampaignSavedStatus({ Map<String, dynamic>? savedState, Map<String, dynamic>? components }) {
+  setIdentifier(int identifier) {
+    this.identifier = identifier;
+  }
+
+  CampaignSavedStatus({ int? identifier, Map<String, dynamic>? savedState, Map<String, dynamic>? components }) {
+    this.identifier = identifier ?? 0;
     this.savedState = savedState ?? {};
     this.components = components ?? {};
   }
 
   CampaignSavedStatus clone() {
-    return CampaignSavedStatus(savedState: {...savedState}, components: {...components});
+    return CampaignSavedStatus(identifier: identifier, savedState: {...savedState}, components: {...components});
   }
 
   updateNestedValue(String path, dynamic newValue) {

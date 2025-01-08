@@ -39,9 +39,9 @@ class _MetaIncreaseDecreaseState extends ConsumerState<MetaIncreaseDecrease> {
               dynamic state = ref
                             .watch(campaignSavedStatusProvider).savedState;
               dynamic retrievedReference = ReferenceLoader.retrieveReference(state, replacedRef.split('.'));
-              int parsedInt = int.parse(retrievedReference);
-              if (parsedInt > 0) {
-                updateCounter(parsedInt - 1);
+              int counterValue = retrievedReference is String ? int.parse(retrievedReference) : retrievedReference;
+              if (counterValue > 0) {
+                updateCounter(counterValue - 1);
               }
             }),
         Text(
@@ -54,7 +54,8 @@ class _MetaIncreaseDecreaseState extends ConsumerState<MetaIncreaseDecrease> {
             dynamic state = ref
                           .watch(campaignSavedStatusProvider).savedState;
             dynamic retrievedReference = ReferenceLoader.retrieveReference(state, replacedRef.split('.'));
-            updateCounter(int.parse(retrievedReference) + 1);
+            int counterValue = retrievedReference is String ? int.parse(retrievedReference) : retrievedReference;
+            updateCounter(counterValue + 1);
           },
         ),
       ],

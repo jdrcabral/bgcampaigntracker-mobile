@@ -44,7 +44,7 @@ class CampaignService {
     });
   }
 
-  Future<Campaign> retrieve(int id) async {
+  Future<List<dynamic>> retrieve(int id) async {
     if (kIsWeb) {
       var response = await http.get(
         Uri.parse('http://127.0.0.1:8000/campaigns/$id'),
@@ -53,8 +53,8 @@ class CampaignService {
         debugPrint(response.body);
       }
       Map<String, dynamic> jsonData = jsonDecode(response.body);
-      return Campaign.fromMap(jsonData);
+      return [Campaign.fromMap(jsonData), jsonData['layout']];
     }
-    return _databaseService.retrieveCampaign(id);
+    return [_databaseService.retrieveCampaign(id)];
   }
 }

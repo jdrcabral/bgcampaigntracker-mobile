@@ -27,11 +27,15 @@ class _CampaignDetailState extends ConsumerState<CampaignDetail> {
   final CampaignService _campaignService = CampaignService();
 
   Future<List<Map<String, dynamic>>> _loadLayout() async {
-    String jsonString = await rootBundle
-        .loadString("assets/data/layout.json");
+    Map<String, dynamic> layout = jsonDecode(await rootBundle
+        .loadString("assets/data/layout.json"));
     String components = await rootBundle.loadString("assets/data/resident_evil/core.json");
-    Campaign campaign = await _campaignService.retrieve(widget.id);
-    return [jsonDecode(jsonString), jsonDecode(components), campaign.savedState];
+    List<dynamic> result = await _campaignService.retrieve(widget.id);
+    Campaign campaign = result[0];
+    if (result.length > 1) {
+      layout = result[1];
+    }
+    return [layout, jsonDecode(components), campaign.savedState];
   }
 
   @override
@@ -49,8 +53,14 @@ class _CampaignDetailState extends ConsumerState<CampaignDetail> {
                 .read(componentsProvider)
                 .loadComponents(snapshot.data![1]);
             ref
+              .read(campaignSavedStatusProvider)
+              .loadComponents(snapshot.data![1]);
+            ref
                 .read(campaignSavedStatusProvider)
                 .loadCampaignState(snapshot.data![2]);
+            ref
+                .read(campaignSavedStatusProvider)
+                .setIdentifier(widget.id);
             return MetaHandler(layout: snapshot.data![0], pathId: "root");
           }
           return const Center(
